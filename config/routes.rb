@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  namespace :dashboard_user do
+    get 'users/index'
+    get 'users/:user_id' => 'users#show', as: :view_user
+    get 'create_users' => 'users#create', as: :create_user
+    post 'register_new_user' => 'users#register_new_user', as: :register_new_user
+    delete 'delete_user/:user_id' => 'users#delete_user', as: :delete_user
+  end
   namespace :dashboard_student do
     get 'course/:course_id' => "course#index", as: :course
     get 'home/index'

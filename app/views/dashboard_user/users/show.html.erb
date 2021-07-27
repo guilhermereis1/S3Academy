@@ -1,0 +1,18 @@
+<% if !notice.nil? %>
+  <div class="alert alert-primary" role="alert">
+    <%= notice %>
+  </div>
+<% end %>
+
+<h2>Informações do Usuário</h2>
+<hr>
+<div class="row">
+  <div class="col-md-6">
+    <input type="text" value="<%= @user.id %>" class="form-control" disabled>
+  </div>
+  <div class="col-md-6">
+    <input type="text" value="<%= @user.email %>" class="form-control" disabled>
+  </div>
+</div>
+<br>
+<%= link_to 'Voltar', dashboard_user_users_index_path, class: "btn btn-secondary" %>

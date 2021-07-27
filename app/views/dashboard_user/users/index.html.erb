@@ -1,0 +1,25 @@
+<h2>Usuários</h2>
+<hr>
+<%= link_to 'Cadastrar Novo Usuário', dashboard_user_create_user_path, class: "btn btn-success" %>
+<br>
+<br>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"># ID</th>
+      <th scope="col">Email</th>
+      <th scope="col">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @users.each do |user| %>
+    <tr>
+      <th scope="row"><%= user.id %></th>
+      <td><%= user.email %></td>
+      <td>
+        <%= link_to 'Ver', dashboard_user_view_user_path(user.id), class: "btn btn-primary" %> | <%= link_to 'Excluír', dashboard_user_delete_user_path(user.id), class: "btn btn-danger", method: :delete %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

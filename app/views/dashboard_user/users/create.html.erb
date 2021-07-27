@@ -1,0 +1,26 @@
+<% if !notice.nil? %>
+  <div class="alert alert-primary" role="alert">
+    <%= notice %>
+  </div>
+<% end %>
+
+<h2>Informações do Usuário</h2>
+<hr>
+<%= form_tag dashboard_user_register_new_user_path, local: true do %>
+  <div class="row">
+    <div class="col-md-12">
+      <label for="">Email</label>
+      <%= text_field_tag :email, "", class: "form-control", placeholder: "Email do usuário" %>
+    </div>
+    <div class="col-md-6">
+      <label for="">Senha</label>
+      <%= text_field_tag :password, "", class: "form-control", placeholder: "Senha aqui" %>
+    </div>
+    <div class="col-md-6">
+      <label for="">Confirmação de Senha</label>
+      <%= text_field_tag :password_confirmation, "", class: "form-control", placeholder: "Senha aqui" %>
+    </div>
+  </div>
+  <br>
+  <%= submit_tag "Cadastrar", class: "btn btn-success" %>
+<% end %>
