@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
   namespace :dashboard_user do
     get 'users/index'
-    get 'users/:user_id' => 'users#show', as: :view_user
-    get 'create_users' => 'users#create', as: :create_user
-    post 'register_new_user' => 'users#register_new_user', as: :register_new_user
-    delete 'delete_user/:user_id' => 'users#delete_user', as: :delete_user
+    get 'students/:student_id' => 'users#show', as: :view_student
+    get 'create_student' => 'users#create', as: :create_student
+    post 'register_new_student' => 'users#register_new_student', as: :register_new_student
+    delete 'delete_student/:student_id' => 'users#delete_student', as: :delete_student
+    get 'home/index'
   end
+
   namespace :dashboard_student do
     get 'course/:course_id' => "course#index", as: :course
     get 'home/index'
@@ -21,9 +23,7 @@ Rails.application.routes.draw do
   resources :sections
   resources :courses
   devise_for :users
-  namespace :dashboard_user do
-    get 'home/index'
-  end
+
   get "/admin" => "dashboard_user/home#index"
   root to: 'dashboard_student/home#index'
 end
