@@ -1,0 +1,26 @@
+pt-BR:
+  active_admin:
+    back: Voltar
+    create_another: "Criar outro(a) %{model}"
+    input: "Dados do %{model}"
+    inputs:
+      detail_main_client_address: Endereço Principal
+      detail_main_client_contact: Contato Principal
+      others_client_contact: Outros
+      obs_client: Observações
+    menu:
+      home: Início
+      users_and_accesses: Usuários e Acessos
+    common:
+      all: Todos
+    messages:
+      delete_dependent_restriction_error: Você não pode excluir este registro, pois existem outros registros no sistema que dependem deste
+      delete_restriction_error: Você não pode excluir este registro
+      start_review_first_html: "Para visualizar e analisar os dados, você deve clicar em revisar primeiro."
+      already_in_review: Este cadastro já está em revisão por outro analista.
+      waiting_payment: Antes de iniciar a análise, é necessária a baixa do pagamento. Aguarde.
+      not_authorized: Você não tem permissão.
+      not_found: Registro não encontrado.
+      sync_legacy_error: 'Ocorreu alguns erros ao tentar sincronizar esta venda com o sistema legado: "%{errors}"'
+      default_error: Ocorreu alguns erros no servidor.
+      sent_to_queue: Enfileirado com sucesso. Será processado assim que possível.

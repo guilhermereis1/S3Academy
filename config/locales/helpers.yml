@@ -1,0 +1,7 @@
+pt-BR:
+  helpers:
+    submit:
+      create: "Criar %{model}"
+      update: "Atualizar %{model}"
+      edit: "Editar %{model}"
+      destroy: "Apagar %{model}"
