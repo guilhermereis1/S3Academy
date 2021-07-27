@@ -13,6 +13,9 @@
           <p class="card-text"><%= course.subtitle %></p>
           <%= link_to 'Acessar Curso', dashboard_student_course_path(course.id), class: "btn btn-primary" %>
         </div>
+        <div class="card-footer text-muted text-center">
+          Sessões: <b><%= course.sections.count %></b>
+        </div>
       </div>
     </div>
   <% end %>
