@@ -1,22 +1,35 @@
 <p id="notice"><%= notice %></p>
 
-<h3>Cursos</h3>
+<div class="card">
+  <h5 class="card-header">Bem Vindo a sua Conta</h5>
+  <div class="card-body">
+    <h5 class="card-title">Olá <b><%= current_student.email%></b>! </h5>
+    <p class="card-text">Aqui você vai pode acessar os Cursos que estão Disponível na plataforma! :)</p>
+  </div>
+</div>
+<br>
+<br>
+<h3>Cursos Disponíveis (<%= @courses.count %>)</h3>
 <hr>
 
 <div class="row">
   <% @courses.each do |course| %>
-    <div class="col-md-3">
-      <div class="card">
-        <%= image_tag(course.image_course, class: "card-img-top") %>
-        <div class="card-body">
-          <h5 class="card-title"><%= course.name %></h5>
-          <p class="card-text"><%= course.subtitle %></p>
-          <%= link_to 'Acessar Curso', dashboard_student_course_path(course.id), class: "btn btn-primary" %>
-        </div>
-        <div class="card-footer text-muted text-center">
-          Sessões: <b><%= course.sections.count %></b>
+    <%= link_to dashboard_student_course_path(course.id), class: "link_course" do %>
+      <div class="col-md-3">
+        <div class="card">
+          <%= image_tag(course.image_course, class: "card-img-top") %>
+          <div class="card-body">
+            <h5 class="card-title"><%= course.name %></h5>
+            <p class="card-text"><%= course.subtitle %></p>
+            <div class="text-center">
+              <%= link_to 'Acessar Curso', dashboard_student_course_path(course.id), class: "btn btn-primary" %>
+            </div>
+          </div>
+          <div class="card-footer text-muted text-center">
+            Sessões: <b><%= course.sections.count %></b>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 </div>

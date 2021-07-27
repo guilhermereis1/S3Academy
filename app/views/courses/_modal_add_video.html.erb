@@ -10,9 +10,9 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <%= form_with(model: lesson, url: add_video_section_in_course_path(@course.id, section.id), local: true) do |form| %>
+        <%= form_with(model: lesson, url: add_video_section_in_course_path(@course.id, section.id), local: true, remote: true, multipart: true) do |form| %>
           <label>Upload Video</label>
-          <%= form.file_field :video, class: "form-control" %>
+          <%= form.file_field :video, class: "form-control", direct_upload: true %>
           <div class="row">
             <div class="col-md-12">
               <label>Título *</label>
@@ -26,7 +26,9 @@
           </div>
           <div class="text-center">
             <br>
-            <%= form.submit "Criar Aula", class: "btn btn-primary" %>
+            <%= form.button type: "submit", id: "submit-uploader", class: "btn btn-primary btn-md", data: { disable_with: "Fazendo Upload de Video..." } do %>
+              Fazer Upload
+            <% end %>
           </div>
         <% end %>
       </div>

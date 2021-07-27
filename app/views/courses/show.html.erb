@@ -37,7 +37,7 @@
               Sessão <%= index + 1%>: <%= section.name %>
             </button>
           </h2>
-          <div id="collapseOne<%= index %>" class="accordion-collapse collapse <%= index == 0 ? "show" : nil %>" aria-labelledby="section<%= section.name %>" data-bs-parent="#accordionSections">
+          <div id="collapseOne<%= index %>" class="accordion-collapse collapse" aria-labelledby="section<%= section.name %>" data-bs-parent="#accordionSections">
             <div class="accordion-body">
               <h5>Video Aulas (<%= section.lessons.count %>)</h5>
               <hr>
