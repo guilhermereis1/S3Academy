@@ -74,6 +74,10 @@ class CoursesController < ApplicationController
           format.html { redirect_to course_path(course_id), notice: "Erro ao criar Sessão!" }
         end
       end
+    else
+      respond_to do |format|
+        format.html { redirect_to course_path(course_id), notice: "Sessão não pode ficar em branco!" }
+      end
     end
   end
 

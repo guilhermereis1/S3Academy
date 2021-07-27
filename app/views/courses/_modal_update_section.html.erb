@@ -1,12 +1,12 @@
-<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateSection">
+<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateSection<%= section.id %>">
   Atualizar Sessão
 </button>
 
-<div class="modal fade" id="updateSection" tabindex="-1" aria-labelledby="updateSectionLabel" aria-hidden="true">
+<div class="modal fade" id="updateSection<%= section.id %>" tabindex="-1" aria-labelledby="updateSection<%= section.id %>" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="updateSectionLabel">Atualizar Sessão</h5>
+        <h5 class="modal-title" id="updateSection">Atualizar Sessão</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">

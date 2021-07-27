@@ -34,7 +34,7 @@
         <div class="accordion-item">
           <h2 class="accordion-header" id="section<%= section.name %>">
             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne<%= index %>" aria-expanded="true" aria-controls="collapseOne">
-              Sessão <%= index + 1%>: <%= section.name %>
+              Sessão <%= index + 1%>: <span class="course_section_name"><%= section.name %></span>
             </button>
           </h2>
           <div id="collapseOne<%= index %>" class="accordion-collapse collapse" aria-labelledby="section<%= section.name %>" data-bs-parent="#accordionSections">
