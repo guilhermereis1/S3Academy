@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<h3>Cursos</h3>
+<hr>
+
+<div class="row">
+  <% @courses.each do |course| %>
+    <div class="col-md-3">
+      <div class="card">
+        <%= image_tag(course.image_course, class: "card-img-top") %>
+        <div class="card-body">
+          <h5 class="card-title"><%= course.name %></h5>
+          <p class="card-text"><%= course.subtitle %></p>
+          <%= link_to 'Acessar Curso', dashboard_student_course_path(course.id), class: "btn btn-primary" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

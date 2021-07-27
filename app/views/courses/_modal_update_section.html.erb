@@ -1,0 +1,27 @@
+<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateSection">
+  Atualizar Sessão
+</button>
+
+<div class="modal fade" id="updateSection" tabindex="-1" aria-labelledby="updateSectionLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateSectionLabel">Atualizar Sessão</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= form_tag update_section_in_course_path(@course.id, section.id), local: true do %>
+          <label>Sessão</label>
+          <%= text_field_tag :section_name, section.name, class: "form-control", placeholder: "Ex: Introdução" %>
+          <div class="text-center">
+            <br>
+            <%= submit_tag "Salvar Alterações", class: "btn btn-success"%>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>

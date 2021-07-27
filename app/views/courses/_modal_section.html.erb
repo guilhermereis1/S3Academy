@@ -1,0 +1,27 @@
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Cadastrar Sessão
+</button>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cria Sessão</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= form_tag create_section_in_course_path(@course.id), local: true do %>
+          <label>Nome da Sessão</label>
+          <%= text_field_tag :section_name, "", class: "form-control", placeholder: "Ex: Introdução" %>
+          <div class="text-center">
+            <br>
+            <%= submit_tag "Criar Sessão", class: "btn btn-success"%>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>

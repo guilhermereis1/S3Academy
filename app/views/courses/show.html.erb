@@ -1,0 +1,74 @@
+<% if !notice.nil? %>
+  <div class="alert alert-primary" role="alert">
+    <%= notice %>
+  </div>
+<% end %>
+
+<div class="row">
+  <div class="col-md-2">
+    <br>
+    <div class="card">
+      <%= image_tag(@course.image_course) %>
+    </div>
+  </div>
+
+  <div class="col-md-10">
+    <label for=""><b>Título</b></label>
+    <input type="text" class="form-control" value="<%= @course.name %>" readonly>
+
+    <label for=""><b>Subtítulo</b></label>
+    <input type="text" class="form-control" value="<%= @course.subtitle %>" readonly>
+
+    <label for=""><b>Descrição</b></label>
+    <textarea class="form-control" readonly rows="6"><%= @course.content %></textarea>
+    <br>
+    <%= link_to 'Editar', edit_course_path(@course), class: "btn btn-warning" %> | <%= link_to 'Voltar', courses_path, class: "btn btn-secondary" %> | <%= render 'modal_section' %>
+
+    <br>
+    <br>
+    <h3>Sessões</h3>
+    <hr>
+
+    <div class="accordion" id="accordionSections">
+      <% @sections.each_with_index do |section, index| %>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="section<%= section.name %>">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne<%= index %>" aria-expanded="true" aria-controls="collapseOne">
+              Sessão <%= index + 1%>: <%= section.name %>
+            </button>
+          </h2>
+          <div id="collapseOne<%= index %>" class="accordion-collapse collapse <%= index == 0 ? "show" : nil %>" aria-labelledby="section<%= section.name %>" data-bs-parent="#accordionSections">
+            <div class="accordion-body">
+              <h5>Video Aulas (<%= section.lessons.count %>)</h5>
+              <hr>
+              
+              <% section.lessons.each_with_index do |lesson, index| %>
+                <% if lesson.video.persisted? then %>
+                  <div class="card mb-3" style="">
+                    <div class="row g-0">
+                      <div class="col-md-3">
+                        <%= video_tag(url_for(lesson.video), controls: true, class: "video_clip") %>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title"><%= index + 1%> - <%= lesson.title %></h5>
+                          <p class="card-text"><%= lesson.content %></p>
+                          <%= link_to 'Apagar Video', delete_video_section_path(@course.id, lesson.id), class: "btn btn-danger", method: :delete %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                <% end%>
+              <% end %>
+              
+              <br>
+              <%= render 'modal_add_video', section: section, lesson: @lesson %> | <%= render 'modal_update_section', section: section %> | <%= link_to 'Apagar Sessão', destroy_section_in_course_path(@course.id, section.id), class: "btn btn-danger", method: :delete %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+  </div>
+</div>

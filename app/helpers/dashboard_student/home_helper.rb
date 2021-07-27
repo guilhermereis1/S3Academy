@@ -1,0 +1,2 @@
+module DashboardStudent::HomeHelper
+end

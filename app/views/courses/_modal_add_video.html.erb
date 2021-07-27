@@ -1,0 +1,38 @@
+<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addVideo<%= section.id %>">
+  Adicionar Video
+</button>
+
+<div class="modal fade" id="addVideo<%= section.id %>" tabindex="-1" aria-labelledby="addVideo<%= section.id %>" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addVideo<%= section.id %>">Adicionar Video</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= form_with(model: lesson, url: add_video_section_in_course_path(@course.id, section.id), local: true) do |form| %>
+          <label>Upload Video</label>
+          <%= form.file_field :video, class: "form-control" %>
+          <div class="row">
+            <div class="col-md-12">
+              <label>Título *</label>
+              <%= form.text_field :title, class: "form-control", placeholder: "Ex: Como instalar o Windows" %>
+            </div>
+
+            <div class="col-md-12">
+              <label>Descrição</label>
+              <%= form.text_area :content, class: "form-control" %>
+            </div>
+          </div>
+          <div class="text-center">
+            <br>
+            <%= form.submit "Criar Aula", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>

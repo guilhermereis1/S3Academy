@@ -1,0 +1,36 @@
+<%= form_with(model: course) do |form| %>
+  <% if course.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>
+
+      <ul>
+        <% course.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <label for="">Imagem de Capa</label>
+    <%= form.file_field :image_course, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <label for="">Título *</label>
+    <%= form.text_field :name, class: "form-control", placeholder: "Ex: Info CC" %>
+  </div>
+
+  <div class="field">
+    <label for="">Subtítulo</label>
+    <%= form.text_field :subtitle, class: "form-control", placeholder: "Ex: Ensinando como usar e capturar info cc" %>
+  </div>
+
+  <div class="field">
+    <label for="">Descrição</label>
+    <%= form.text_area :content, class: "form-control", placeholder: "Adicione a descrição do Curso aqui" %>
+  </div>
+
+  <br>
+  <%= form.submit class: "btn btn-primary" %>
+<% end %>

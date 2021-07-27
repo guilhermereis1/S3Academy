@@ -1,0 +1,65 @@
+<%= link_to 'Voltar', dashboard_student_home_index_path, class: "btn btn-primary" %>
+<div class="row">
+  <div class="col-md-2">
+    <br>
+    <div class="card">
+      <%= image_tag(@course.image_course) %>
+    </div>
+  </div>
+
+  <div class="col-md-10">
+    <label for=""><b>Título</b></label>
+    <input type="text" class="form-control" value="<%= @course.name %>" readonly>
+
+    <label for=""><b>Subtítulo</b></label>
+    <input type="text" class="form-control" value="<%= @course.subtitle %>" readonly>
+
+    <label for=""><b>Descrição</b></label>
+    <textarea class="form-control" readonly rows="6"><%= @course.content %></textarea>
+
+    <br>
+    <br>
+  </div>
+
+  <div class="col-md-12">
+    <h3>Sessões</h3>
+    <hr>
+
+    <div class="accordion" id="accordionSections">
+      <% @course.sections.each_with_index do |section, index| %>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="section<%= section.name %>">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne<%= index %>" aria-expanded="true" aria-controls="collapseOne">
+              Sessão <%= index + 1%>: <%= section.name %>
+            </button>
+          </h2>
+          <div id="collapseOne<%= index %>" class="accordion-collapse collapse" aria-labelledby="section<%= section.name %>" data-bs-parent="#accordionSections">
+            <div class="accordion-body">
+              <h5>Video Aulas (<%= section.lessons.count %>)</h5>
+              <hr>
+              
+              <% section.lessons.each_with_index do |lesson, index| %>
+                <% if lesson.video.persisted? then %>
+                  <div class="card mb-3" style="">
+                    <div class="row g-0">
+                      <div class="col-md-3">
+                        <%= video_tag(url_for(lesson.video), controls: true, class: "video_clip") %>
+                      </div>
+                      <div class="col-md-8">
+                        <div class="card-body">
+                          <h5 class="card-title"><%= index + 1%> - <%= lesson.title %></h5>
+                          <p class="card-text"><%= lesson.content %></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                <% end%>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
