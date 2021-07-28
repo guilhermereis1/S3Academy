@@ -15,6 +15,9 @@
         <li>
           <%= link_to 'Usuários', dashboard_user_users_index_path, class: "nav-link" %>
         </li>
+        <li>
+          <%= link_to 'Notificações', notifications_path, class: "nav-link" %>
+        </li>
       </ul>
       <form class="d-flex">
         <input class="form-control me-2" value="<%= current_user.email %>" disabled>

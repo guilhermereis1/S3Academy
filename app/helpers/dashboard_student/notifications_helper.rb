@@ -1,0 +1,2 @@
+module DashboardStudent::NotificationsHelper
+end

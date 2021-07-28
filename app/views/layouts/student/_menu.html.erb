@@ -9,6 +9,9 @@
         <li class="nav-item">
           <%= link_to 'Dashboard', dashboard_student_home_index_path, class: "nav-link" %>
         </li>
+         <li class="nav-item">
+          <%= link_to 'Notificações', dashboard_student_notifications_index_path, class: "nav-link" %>
+        </li>
       </ul>
       <form class="d-flex">
         <input class="form-control me-2" value="<%= current_student.email %>" disabled>

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :notifications
+  namespace :dashboard_student do
+    get 'notifications/index'
+  end
   namespace :dashboard_user do
     get 'users/index'
     get 'students/:student_id' => 'users#show', as: :view_student

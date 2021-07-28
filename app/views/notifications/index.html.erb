@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Notificações</h1>
+<hr>
+<%= link_to 'Criar Notificação', new_notification_path, class: "btn btn-success" %>
+<br>
+<br>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @notifications.each do |notification| %>
+      <tr>
+        <td><%= notification.name %></td>
+        <td>
+          <%= link_to 'Ver', notification, class: "btn btn-primary" %> | <%= link_to 'Editar', edit_notification_path(notification), class: "btn btn-warning" %> | <%= link_to 'Excluír', notification, method: :delete, data: { confirm: 'Tem certeza disso?' }, class: "btn btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Criar Notificação', new_notification_path, class: "btn btn-success" %>
