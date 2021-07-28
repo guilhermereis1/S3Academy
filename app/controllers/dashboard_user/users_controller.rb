@@ -41,7 +41,7 @@ class DashboardUser::UsersController < ApplicationController
       user.destroy
       
       respond_to do |format|
-        format.html { redirect_to dashboard_user_students_index_path, notice: "Usuário deletado com sucesso!" }
+        format.html { redirect_to dashboard_user_users_index_path, notice: "Usuário deletado com sucesso!" }
       end
     end
   end
