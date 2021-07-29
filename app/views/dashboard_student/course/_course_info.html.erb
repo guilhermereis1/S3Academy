@@ -12,4 +12,8 @@
 <p class="info_course"><%= @course.subtitle %></p>
 
 <label for=""><b>Descrição</b></label>
-<p class="info_course"><%= @course.content %></p>
+<% if @course.content.present? %>
+  <p class="info_course"><%= @course.content %></p>
+<% else %>
+  <p class="info_course">Sem Descrição</p>
+<% end %>

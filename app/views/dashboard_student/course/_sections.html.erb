@@ -2,7 +2,7 @@
   <h3 class="title_sections">Sessões (<%= @course.sections.count %>)</h3>
   <hr>
   <div class="accordion" id="accordionSections">
-    <% @course.sections.each_with_index do |section, index| %>
+    <% @course.sections.order(position: :asc).each_with_index do |section, index| %>
       <div class="accordion-item">
         <h2 class="accordion-header" id="section<%= section.name %>">
           <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne<%= index %>" aria-expanded="true" aria-controls="collapseOne">
@@ -14,7 +14,7 @@
             <h5>Video Aulas (<%= section.lessons.count %>)</h5>
             <hr>
             
-            <% section.lessons.each_with_index do |lesson, index| %>
+            <% section.lessons.order(position: :asc).each_with_index do |lesson, index| %>
               <% if lesson.video.persisted? then %>
                 <div class="card mb-3" style="">
                   <div class="row g-0">

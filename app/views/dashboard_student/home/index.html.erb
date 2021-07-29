@@ -26,7 +26,7 @@
             </div>
           </div>
           <div class="card-footer text-muted text-center">
-            Sessões: <b><%= course.sections.count %></b>
+            Sessões: <b><%= course.sections.count %></b> | Vídeos: <b><%= course.sections.map { |section| section.lessons.count }.inject(0, :+) %></b>
           </div>
         </div>
       </div>
