@@ -1,3 +1,32 @@
 // Place all the styles related to the DashboardStudent/course controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.video-js {
+  width: 300px;
+  height: 200px;
+}
+
+@media only screen and (max-width: 760px) {
+  .video-js {
+    width: 100%;
+    height: 400px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .dashboard_user {
+    margin: 10px !important;
+  }
+  .col-md-9.sections_course {
+    padding: 0px !important;
+  }
+  .video-js {
+    width: 100%;
+    height: 250px;
+  }
+}
+
+.card_content {
+  text-align: justify;
+}

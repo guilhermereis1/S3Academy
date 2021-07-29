@@ -13,22 +13,21 @@
           <div class="accordion-body">
             <h5>Video Aulas (<%= section.lessons.count %>)</h5>
             <hr>
-            
             <% section.lessons.order(position: :asc).each_with_index do |lesson, index| %>
               <% if lesson.video.persisted? then %>
                 <div class="card mb-3" style="">
                   <div class="row g-0">
-                    <div class="col-md-4">
+                    <div class="col-md-4 col-xs-12">
                       <div class="vide_clip">
-                          <video id="my-video" class="video-js" controls preload="auto" data-setup="{}" width="300" height="200">
-                            <source src="<%= url_for(lesson.video) %>" type="video/mp4" />
-                          </video>
+                        <video id="my-video" class="video-js" controls preload="auto" data-setup="{}" >
+                          <source src="<%= url_for(lesson.video) %>" type="video/mp4" />
+                        </video>
                       </div>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-md-8 col-xs-12">
                       <div class="card-body">
                         <h5 class="card-title"><%= index + 1%> - <%= lesson.title %></h5>
-                        <p class="card-text"><%= lesson.content %></p>
+                        <p class="card-text card_content"><%= lesson.content %></p>
                       </div>
                     </div>
                   </div>
