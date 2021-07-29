@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     get 'students/:student_id' => 'users#show', as: :view_student
     get 'create_student' => 'users#create', as: :create_student
     post 'register_new_student' => 'users#register_new_student', as: :register_new_student
+    get 'update_student/:student_id' => 'users#update_student', as: :update
+    post 'save_student_updated/:student_id' => 'users#save_student_updated', as: :save_student
     delete 'delete_student/:student_id' => 'users#delete_student', as: :delete_student
     get 'home/index'
   end

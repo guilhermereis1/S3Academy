@@ -6,11 +6,11 @@
 
 <h2>Informações do Usuário</h2>
 <hr>
-<%= form_tag dashboard_user_register_new_student_path, local: true do %>
+<%= form_tag dashboard_user_save_student_path(@student.id), local: true do %>
   <div class="row">
     <div class="col-md-12">
       <label for="">Email</label>
-      <%= text_field_tag :email, "", class: "form-control", placeholder: "Email do usuário" %>
+      <%= text_field_tag :email, @student.email, class: "form-control", placeholder: "Email do usuário", disabled: true %>
     </div>
     <div class="col-md-6">
       <label for="">Senha</label>
@@ -22,5 +22,5 @@
     </div>
   </div>
   <br>
-  <%= submit_tag "Cadastrar", class: "btn btn-success" %>
+  <%= submit_tag "Atualizar", class: "btn btn-success" %>
 <% end %>

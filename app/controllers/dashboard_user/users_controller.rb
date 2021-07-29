@@ -34,6 +34,30 @@ class DashboardUser::UsersController < ApplicationController
     end
   end
 
+  def update_student
+    student_id = params[:student_id].to_i
+
+    @student = Student.find(student_id)
+  end
+
+  def save_student_updated
+    student_id = params[:student_id].to_i
+    password = params[:password]
+    password_confirmation = params[:password_confirmation]
+
+    @student = Student.find(student_id)
+    @student.update(
+      password: password,
+      password_confirmation: password_confirmation
+    )
+
+    respond_to do |format|
+      if @student.save
+        format.html { redirect_to dashboard_user_view_student_path(@student.id), notice: "Usuário atualizado com sucesso!" }
+      end
+    end
+  end
+
   def delete_student
     student_id = params[:student_id].to_i
     if student_id.present? && student_id != 0 then
