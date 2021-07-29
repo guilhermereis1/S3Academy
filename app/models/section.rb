@@ -7,8 +7,10 @@
 #  course_id  :bigint           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  position   :integer
 #
 class Section < ApplicationRecord
   belongs_to :course
-  has_many :lessons, dependent: :destroy
+  acts_as_list scope: :course
+  has_many :lessons, -> { order(position: :asc) }, dependent: :destroy
 end

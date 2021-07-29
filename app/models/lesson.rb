@@ -8,8 +8,10 @@
 #  updated_at :datetime         not null
 #  title      :string
 #  content    :text
+#  position   :integer
 #
 class Lesson < ApplicationRecord
   belongs_to :section
   has_one_attached :video
+  acts_as_list scope: :section
 end

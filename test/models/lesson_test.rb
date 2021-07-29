@@ -8,6 +8,7 @@
 #  updated_at :datetime         not null
 #  title      :string
 #  content    :text
+#  position   :integer
 #
 require "test_helper"
 

@@ -11,5 +11,5 @@
 #
 class Course < ApplicationRecord
   has_one_attached :image_course
-  has_many :sections, dependent: :destroy
+  has_many :sections, -> { order(position: :asc) }, dependent: :destroy
 end

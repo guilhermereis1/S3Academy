@@ -19,6 +19,13 @@ Rails.application.routes.draw do
   devise_for :students
   delete 'delete_video/:course_id/:lesson_id' => "courses#delete_video_section", as: :delete_video_section
   resources :lessons
+
+  get 'move_video_to_up/:course_id/:lesson_id' => 'courses#move_to_up_video', as: :move_video_to_up
+  get 'move_video_to_bottom/:course_id/:lesson_id' => 'courses#move_to_bottom_video', as: :move_video_to_bottom
+  
+  get 'move_section_to_up/:course_id/:section_id' => 'courses#move_to_up', as: :move_section_to_up
+  get 'move_section_to_bottom/:course_id/:section_id' => 'courses#move_to_bottom', as: :move_section_to_bottom
+
   post 'add_video_section/:course_id/:section_id' => "courses#add_video_section", as: :add_video_section_in_course
   post 'create_section_in_course/:course_id' => "courses#create_section", as: :create_section_in_course
   delete 'destroy_section_in_course/:course_id/:section_id' => "courses#destroy_section", as: :destroy_section_in_course

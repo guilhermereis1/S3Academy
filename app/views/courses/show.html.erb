@@ -6,8 +6,8 @@
 
 <div class="row">
   <div class="col-md-2">
-    <br>
     <div class="card">
+      <label class="text-center">Imagem de Capa</label>
       <%= image_tag(@course.image_course) %>
     </div>
   </div>
@@ -30,7 +30,7 @@
     <hr>
 
     <div class="accordion" id="accordionSections">
-      <% @sections.each_with_index do |section, index| %>
+      <% @sections.order(position: :asc).each_with_index do |section, index| %>
         <div class="accordion-item">
           <h2 class="accordion-header" id="section<%= section.name %>">
             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne<%= index %>" aria-expanded="true" aria-controls="collapseOne">
@@ -39,10 +39,10 @@
           </h2>
           <div id="collapseOne<%= index %>" class="accordion-collapse collapse" aria-labelledby="section<%= section.name %>" data-bs-parent="#accordionSections">
             <div class="accordion-body">
+              <br>
               <h5>Video Aulas (<%= section.lessons.count %>)</h5>
               <hr>
-              
-              <% section.lessons.each_with_index do |lesson, index| %>
+              <% section.lessons.order(position: :asc).each_with_index do |lesson, index| %>
                 <% if lesson.video.persisted? then %>
                   <div class="card mb-3" style="">
                     <div class="row g-0">
@@ -53,7 +53,7 @@
                         <div class="card-body">
                           <h5 class="card-title"><%= index + 1%> - <%= lesson.title %></h5>
                           <p class="card-text"><%= lesson.content %></p>
-                          <%= link_to 'Apagar Video', delete_video_section_path(@course.id, lesson.id), class: "btn btn-danger", method: :delete %>
+                          <%= render 'move_video_buttons', section: section, course: @course, lesson: lesson %>
                         </div>
                       </div>
                     </div>
@@ -61,14 +61,12 @@
                   <br>
                 <% end%>
               <% end %>
-              
               <br>
-              <%= render 'modal_add_video', section: section, lesson: @lesson %> | <%= render 'modal_update_section', section: section %> | <%= link_to 'Apagar Sessão', destroy_section_in_course_path(@course.id, section.id), class: "btn btn-danger", method: :delete %>
+              <%= render 'modal_add_video', section: section, lesson: @lesson %> | <%= render 'modal_update_section', section: section %> | <%= link_to 'Apagar Sessão', destroy_section_in_course_path(@course.id, section.id), class: "btn btn-danger", method: :delete %> | <%= render 'move_section_buttons', section: section, course: @course %>
             </div>
           </div>
         </div>
       <% end %>
     </div>
-
   </div>
 </div>

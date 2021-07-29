@@ -162,7 +162,48 @@ class CoursesController < ApplicationController
     end
   end
 
+  def move_to_up
+    move_up(params[:course_id].to_i, params[:section_id].to_i)
+  end
+
+  def move_to_bottom
+    move_bottom(params[:course_id].to_i, params[:section_id].to_i)
+  end
+
+  def move_to_up_video
+    move_up_video(params[:course_id].to_i, params[:lesson_id].to_i)
+  end
+
+  def move_to_bottom_video
+    move_bottom_video(params[:course_id].to_i, params[:lesson_id].to_i)
+  end
+
   private
+    def move_up(course_id, section_id)
+      Section.find(section_id).move_higher
+      respond_to_moves(course_id)
+    end
+
+    def move_up_video(course_id, lesson_id)
+      Lesson.find(lesson_id).move_higher
+      respond_to_moves(course_id)
+    end
+
+    def move_bottom(course_id, section_id)
+      Section.find(section_id).move_lower
+      respond_to_moves(course_id)
+    end
+
+    def move_bottom_video(course_id, lesson_id)
+      Lesson.find(lesson_id).move_lower
+      respond_to_moves(course_id)
+    end
+
+    def respond_to_moves(course_id)
+      respond_to do |format|
+        format.html { redirect_to course_path(course_id), notice: "Sessão movida com sucesso!" }
+      end
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_course
       @course = Course.find(params[:id])
