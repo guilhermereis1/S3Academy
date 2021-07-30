@@ -1,3 +1,9 @@
+<% if !notice.nil? %>
+  <div class="alert alert-primary" role="alert">
+    <%= notice %>
+  </div>
+<% end %>
+
 <div class="title_course">
   <%= @course.name %>
 </div>

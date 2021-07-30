@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
   resources :notifications
-  namespace :dashboard_student do
-    get 'notifications/index'
-  end
   namespace :dashboard_user do
     get 'users/index'
     get 'students/:student_id' => 'users#show', as: :view_student
@@ -15,6 +12,9 @@ Rails.application.routes.draw do
   end
 
   namespace :dashboard_student do
+    post 'new_comment/:course_id/:lesson_id/:student_id' => "course#new_comment", as: :new_comment
+    get 'delete_comment/:course_id/:student_id/:comment_id' => "course#delete_comment", as: :delete_comment
+    get 'notifications/index'
     get 'course/:course_id' => "course#index", as: :course
     get 'home/index'
   end

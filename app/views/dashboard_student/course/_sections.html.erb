@@ -28,6 +28,7 @@
                       <div class="card-body">
                         <h5 class="card-title"><%= index + 1%> - <%= lesson.title %></h5>
                         <p class="card-text card_content"><%= lesson.content %></p>
+                        <%= render 'comments', lesson: lesson %>
                       </div>
                     </div>
                   </div>
