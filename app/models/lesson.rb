@@ -14,5 +14,5 @@ class Lesson < ApplicationRecord
   belongs_to :section
   has_one_attached :video
   acts_as_list scope: :section
-  has_many :comments
+  has_many :comments, dependent: :destroy
 end
