@@ -5,4 +5,49 @@ class DashboardStudent::CourseController < ApplicationController
   def index
     @course = Course.find(params[:course_id].to_i)
   end
+
+  def new_comment
+    course_id = params[:course_id].to_i
+    lesson_id = params[:lesson_id].to_i
+    student_id = params[:student_id].to_i
+    content = params[:content]
+    
+    if lesson_id.present? && student_id.present? && content.present? then
+      comment = Comment.new(
+        student_id: student_id,
+        lesson_id: lesson_id,
+        content: content
+      )
+
+      respond_to do |format|
+        if comment.save
+          format.html { redirect_to dashboard_student_course_path(course_id), notice: "Comentário feito com sucesso!" }
+        else
+          format.html { redirect_to dashboard_student_course_path(course_id), notice: "Erro ao comentar, tente novamente!" }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to dashboard_student_course_path(course_id), notice: "Comentário não pode ser em branco!" }
+      end
+    end
+  end
+
+  def delete_comment
+    course_id = params[:course_id].to_i
+    student_id = params[:student_id].to_i
+    comment_id = params[:comment_id].to_i
+
+    if course_id.present? && comment_id.present? then
+      student = Student.find(student_id)
+      comment = Comment.find(comment_id)
+
+      if Comment.find_by(student_id: student).present? then
+        comment.destroy
+        respond_to do |format|
+          format.html { redirect_to dashboard_student_course_path(course_id), notice: "Comentário excluído com sucesso!" }
+        end
+      end
+    end
+  end
 end

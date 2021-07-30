@@ -1,0 +1,43 @@
+<button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#commentsModal<%= lesson.id %>">
+  Comentários (<%= lesson.comments.count %>)
+</button>
+
+<div class="modal fade" id="commentsModal<%= lesson.id %>"" tabindex="-1" aria-labelledby="commentsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="commentsModalLabel">Comentários</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <% if lesson.comments.count == 0 then %>
+          <h3 class="text-center">Seja o primeiro a fazer um comentário aqui!</h3>
+        <% end %>
+        <% lesson.comments.each do |comment| %>
+          <% if comment.student.id == current_student.id then %>
+            <label>Você comentou</label>
+          <% else %>
+            <label><b><%= comment.student.email %></b> comentou</label>
+          <% end %>
+          <textarea class="form-control" style="height: auto" readonly><%= comment.content %></textarea>
+          a <%= distance_of_time_in_words(comment.created_at, Time.now) %> atrás
+          <br>
+          <% if comment.student.id == current_student.id then %>
+            <%= link_to 'Apagar meu Comentário', dashboard_student_delete_comment_path(@course.id, current_student.id, comment.id), class: "btn btn-danger" %>
+          <% end %>
+          <hr>
+        <% end %>
+
+        <%= form_tag dashboard_student_new_comment_path(@course.id, lesson.id, current_student.id), local: true do %>
+          <label>Comentário</label>
+          <%= text_area_tag :content, "", class: "form-control", placeholder: "Escreva um comentário aqui!" %>
+          <br>
+          <%= submit_tag "Comentar", class: "btn btn-success"%>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar Comentários</button>
+      </div>
+    </div>
+  </div>
+</div>

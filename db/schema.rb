@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_29_124609) do
+ActiveRecord::Schema.define(version: 2021_07_29_190529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,17 @@ ActiveRecord::Schema.define(version: 2021_07_29_124609) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.bigint "student_id", null: false
+    t.bigint "lesson_id", null: false
+    t.text "content", null: false
+    t.integer "status", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["lesson_id"], name: "index_comments_on_lesson_id"
+    t.index ["student_id"], name: "index_comments_on_student_id"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -103,6 +114,8 @@ ActiveRecord::Schema.define(version: 2021_07_29_124609) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "comments", "lessons"
+  add_foreign_key "comments", "students"
   add_foreign_key "lessons", "sections"
   add_foreign_key "sections", "courses"
 end
