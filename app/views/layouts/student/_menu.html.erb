@@ -1,6 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
-    <%= link_to 'Home', dashboard_student_home_index_path, class: "navbar-brand" %>
+    <%= link_to dashboard_student_home_index_path, class: "navbar-brand" do %>
+      <%= image_tag("logo.png", class: "logo_dashboard") %>
+    <% end %>
+    <%#= link_to 'Home', dashboard_student_home_index_path, class: "navbar-brand" %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
