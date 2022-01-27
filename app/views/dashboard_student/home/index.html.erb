@@ -14,8 +14,8 @@
 
 <div class="row">
   <% @courses.each do |course| %>
-    <%= link_to dashboard_student_course_path(course.id), class: "link_course" do %>
-      <div class="col-md-3">
+    <div class="col-md-3">
+      <%= link_to dashboard_student_course_path(course.id), class: "link_course" do %>
         <div class="card">
           <%= image_tag(course.image_course, class: "card-img-top") %>
           <div class="card-body">
@@ -29,7 +29,7 @@
             Sessões: <b><%= course.sections.count %></b> | Vídeos: <b><%= course.sections.map { |section| section.lessons.count }.inject(0, :+) %></b> | <%= course.created_at.to_s(:date_time_env) %>
           </div>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
   <% end %>
 </div>
