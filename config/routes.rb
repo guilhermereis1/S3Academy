@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get 'move_section_to_up/:course_id/:section_id' => 'courses#move_to_up', as: :move_section_to_up
   get 'move_section_to_bottom/:course_id/:section_id' => 'courses#move_to_bottom', as: :move_section_to_bottom
 
+  put 'update_video_section/:course_id/:lesson_id' => 'courses#update_video_section', as: :update_video_section_in_course
   post 'add_video_section/:course_id/:section_id' => "courses#add_video_section", as: :add_video_section_in_course
   post 'create_section_in_course/:course_id' => "courses#create_section", as: :create_section_in_course
   delete 'destroy_section_in_course/:course_id/:section_id' => "courses#destroy_section", as: :destroy_section_in_course
@@ -38,5 +39,6 @@ Rails.application.routes.draw do
   devise_for :users
 
   get "/admin" => "dashboard_user/home#index"
-  root to: 'dashboard_student/home#index'
+  get "home/:course_id" => "home#show", as: :show_course
+  root to: 'home#index'
 end

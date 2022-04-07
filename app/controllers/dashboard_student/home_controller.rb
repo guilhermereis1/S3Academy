@@ -3,6 +3,6 @@ class DashboardStudent::HomeController < ApplicationController
   layout 'student'
 
   def index
-    @courses = Course.all
+    @courses = Subscription.where(student_id: current_student.id)
   end
 end

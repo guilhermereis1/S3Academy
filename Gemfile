@@ -14,6 +14,8 @@ gem 'aws-sdk-s3'
 gem 'devise'
 gem 'rack-cors'
 gem 'acts_as_list'
+gem 'active_storage_validations'
+gem 'mini_magick', '>= 4.9.5'
 
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'dotenv-rails', groups: [:development, :test]

@@ -7,9 +7,9 @@ class DashboardUser::UsersController < ApplicationController
   end
 
   def show
-    student_id = params[:student_id].to_i
+    student_id = params[:student_id]
 
-    if student_id.present? && student_id != 0 then
+    if student_id.present? then
       @student = Student.find(student_id)
     end
   end
@@ -35,13 +35,13 @@ class DashboardUser::UsersController < ApplicationController
   end
 
   def update_student
-    student_id = params[:student_id].to_i
+    student_id = params[:student_id]
 
     @student = Student.find(student_id)
   end
 
   def save_student_updated
-    student_id = params[:student_id].to_i
+    student_id = params[:student_id]
     password = params[:password]
     password_confirmation = params[:password_confirmation]
 
@@ -59,10 +59,10 @@ class DashboardUser::UsersController < ApplicationController
   end
 
   def delete_student
-    student_id = params[:student_id].to_i
-    if student_id.present? && student_id != 0 then
-      user = User.find(student_id)
-      user.destroy
+    student_id = params[:student_id]
+    if student_id.present? then
+      student = Student.find(student_id)
+      student.destroy
       
       respond_to do |format|
         format.html { redirect_to dashboard_user_users_index_path, notice: "Usuário deletado com sucesso!" }

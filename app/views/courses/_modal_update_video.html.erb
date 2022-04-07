@@ -1,16 +1,16 @@
-<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addVideo<%= section.id %>">
-  Adicionar Video
+<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editVideo<%= section.id %>">
+  Editar Aula
 </button>
 
-<div class="modal fade" id="addVideo<%= section.id %>" tabindex="-1" aria-labelledby="addVideo<%= section.id %>" aria-hidden="true">
+<div class="modal fade" id="editVideo<%= section.id %>" tabindex="-1" aria-labelledby="editVideo<%= section.id %>" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="addVideo<%= section.id %>">Adicionar Video</h5>
+        <h5 class="modal-title" id="editVideo<%= section.id %>">Adicionar Video</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <%= form_with(model: lesson, url: add_video_section_in_course_path(@course.id, section.id), local: true, remote: true, multipart: true) do |form| %>
+        <%= form_with(model: lesson, url: update_video_section_in_course_path(@course.id, lesson.id), local: true, remote: true, multipart: true, method: :put) do |form| %>
           <div class="row">
             <div class="col-md-12">
               <label>Imagem de Capa</label>
@@ -24,18 +24,18 @@
 
             <div class="col-md-12">
               <label>Título *</label>
-              <%= form.text_field :title, class: "form-control", placeholder: "Ex: Como instalar o Windows" %>
+              <%= form.text_field :title, value: lesson.title, class: "form-control", placeholder: "Ex: Como instalar o Windows" %>
             </div>
 
             <div class="col-md-12">
               <label>Descrição</label>
-              <%= form.text_area :content, class: "form-control" %>
+              <%= form.text_area :content, value: lesson.content, class: "form-control" %>
             </div>
           </div>
           <div class="text-center">
             <br>
             <%= form.button type: "submit", id: "submit-uploader", class: "btn btn-primary btn-md", data: { disable_with: "Fazendo Upload de Video..." } do %>
-              Fazer Upload
+              Atualizar Informações
             <% end %>
           </div>
         <% end %>

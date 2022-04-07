@@ -12,6 +12,7 @@ class CoursesController < ApplicationController
   def show
     @sections = Section.where(course_id: @course.id)
     @lesson = Lesson.new
+    @course_users = Subscription.where(course_id: @course.id)
   end
 
   # GET /courses/new
@@ -61,7 +62,7 @@ class CoursesController < ApplicationController
   end
 
   def create_section
-    course_id = params[:course_id].to_i
+    course_id = params[:course_id]
     section_name = params[:section_name]
 
     if course_id.present? && section_name.present? then
@@ -84,7 +85,7 @@ class CoursesController < ApplicationController
   def update_section
     course_id = params[:course_id]
     section_name = params[:section_name]
-    section_id = params[:section_id].to_i
+    section_id = params[:section_id]
 
     if section_id.present? && section_name.present? then
       section = Section.find(section_id)
@@ -107,8 +108,8 @@ class CoursesController < ApplicationController
   end
 
   def destroy_section
-    course_id = params[:course_id].to_i
-    section_id = params[:section_id].to_i
+    course_id = params[:course_id]
+    section_id = params[:section_id]
 
     if section_id.present? then
       section = Section.find(section_id)
@@ -121,8 +122,8 @@ class CoursesController < ApplicationController
   end
 
   def add_video_section
-    course_id = params[:course_id].to_i
-    section_id = params[:section_id].to_i
+    course_id = params[:course_id]
+    section_id = params[:section_id]
     title = params[:lesson][:title]
     content = params[:lesson][:content]
 
@@ -131,8 +132,41 @@ class CoursesController < ApplicationController
         section_id: section_id, 
         title: title, 
         content: content, 
-        video: params[:lesson][:video]
+        video: params[:lesson][:video],
+        thumbnail: params[:lesson][:thumbnail]
       )
+
+      respond_to do |format|
+        if lesson.save
+          format.html { redirect_to course_path(course_id), notice: "Upload feito com sucesso!" }
+        else
+          format.html { redirect_to course_path(course_id), notice: "Erro ao criar Sessão!" }
+        end
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to course_path(course_id), notice: "Título não pode ficar em Branco!" }
+      end
+    end
+  end
+
+  def update_video_section
+    course_id = params[:course_id]
+    lesson_id = params[:lesson_id]
+    title = params[:lesson][:title]
+    content = params[:lesson][:content]
+
+    if lesson_id.present? && title.present? then
+      lesson = Lesson.find(lesson_id)
+      lesson.update(title: title, content: content)
+
+      if params[:lesson][:thumbnail].present? then
+        lesson.update(thumbnail: params[:lesson][:thumbnail])
+      end
+
+      if params[:lesson][:video].present? then
+        lesson.update(video: params[:lesson][:video])
+      end
 
       respond_to do |format|
         if lesson.save
@@ -150,7 +184,7 @@ class CoursesController < ApplicationController
 
   def delete_video_section
     course_id = params[:course_id]
-    lesson_id = params[:lesson_id].to_i
+    lesson_id = params[:lesson_id]
 
     if lesson_id.present? then
       lesson = Lesson.find(lesson_id)
@@ -163,19 +197,19 @@ class CoursesController < ApplicationController
   end
 
   def move_to_up
-    move_up(params[:course_id].to_i, params[:section_id].to_i)
+    move_up(params[:course_id], params[:section_id])
   end
 
   def move_to_bottom
-    move_bottom(params[:course_id].to_i, params[:section_id].to_i)
+    move_bottom(params[:course_id], params[:section_id])
   end
 
   def move_to_up_video
-    move_up_video(params[:course_id].to_i, params[:lesson_id].to_i)
+    move_up_video(params[:course_id], params[:lesson_id])
   end
 
   def move_to_bottom_video
-    move_bottom_video(params[:course_id].to_i, params[:lesson_id].to_i)
+    move_bottom_video(params[:course_id], params[:lesson_id])
   end
 
   private

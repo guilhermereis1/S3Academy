@@ -1,0 +1,19 @@
+
+<div class="row">
+  <% @courses.each do |course| %>
+    <div class="col-md-3">
+      <%= link_to show_course_path(course.id), class: "link_course" do %>
+        <div class="card">
+          <%= image_tag(course.image_course, class: "card-img-top") %>
+          <div class="card-body">
+            <h5 class="card-title"><%= course.name %></h5>
+            <p class="card-text"><%= truncate(course.subtitle, :length => 200) %></p>
+          </div>
+          <div class="card-footer text-muted text-center">
+            Vídeos: <b><%= course.sections.map { |section| section.lessons.count }.inject(0, :+) %></b> | Inscritos: <b><%= course.subscriptions.count %></b>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

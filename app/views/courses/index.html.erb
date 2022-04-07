@@ -10,26 +10,7 @@
 <br>
 
 <div class="row">
-  <% @courses.each do |course| %>
-    <div class="col-md-3">
-      <%= link_to course, class: "link_course" do %>
-        <div class="card">
-          <%= image_tag(course.image_course, class: "card-img-top") %>
-          <div class="card-body">
-            <h5 class="card-title"><%= course.name %></h5>
-            <p class="card-text"><%= course.subtitle %></p>
-            <br>
-            <div class="text-center">
-              <%= link_to 'Ver', course, class: "btn btn-primary" %> | <%= link_to 'Editar', edit_course_path(course), class: "btn btn-warning" %> | <%= link_to 'Apagar', course, method: :delete, data: { confirm: 'Tem certeza?' }, class: "btn btn-danger" %>
-            </div>
-          </div>
-          <div class="card-footer text-muted text-center">
-            Sessões: <b><%= course.sections.count %></b> | Vídeos: <b><%= course.sections.map { |section| section.lessons.count }.inject(0, :+) %></b>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
+  <%= render 'course' %>
 </div>
 <br>
 <%= link_to 'Criar Curso', new_course_path, class: "btn btn-success" %>

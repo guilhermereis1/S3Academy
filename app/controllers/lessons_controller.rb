@@ -1,6 +1,6 @@
 class LessonsController < ApplicationController
-  before_action :set_lesson, only: %i[ show edit update destroy ]
   layout 'user'
+  before_action :set_lesson, only: %i[ show edit update destroy ]
   before_action :set_course, only: %i[ show edit update destroy ]
 
   # GET /lessons or /lessons.json
@@ -66,6 +66,6 @@ class LessonsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def lesson_params
-      params.require(:lesson).permit(:section_id, :video)
+      params.require(:lesson).permit(:section_id, :title, :content, :thumbnail, :video)
     end
 end

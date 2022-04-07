@@ -3,13 +3,13 @@ class DashboardStudent::CourseController < ApplicationController
   layout 'student'
 
   def index
-    @course = Course.find(params[:course_id].to_i)
+    @course = Course.find(params[:course_id])
   end
 
   def new_comment
-    course_id = params[:course_id].to_i
-    lesson_id = params[:lesson_id].to_i
-    student_id = params[:student_id].to_i
+    course_id = params[:course_id]
+    lesson_id = params[:lesson_id]
+    student_id = params[:student_id]
     content = params[:content]
     
     if lesson_id.present? && student_id.present? && content.present? then
@@ -34,9 +34,9 @@ class DashboardStudent::CourseController < ApplicationController
   end
 
   def delete_comment
-    course_id = params[:course_id].to_i
-    student_id = params[:student_id].to_i
-    comment_id = params[:comment_id].to_i
+    course_id = params[:course_id]
+    student_id = params[:student_id]
+    comment_id = params[:comment_id]
 
     if course_id.present? && comment_id.present? then
       student = Student.find(student_id)

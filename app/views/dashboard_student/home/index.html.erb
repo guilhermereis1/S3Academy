@@ -9,27 +9,9 @@
 </div>
 <br>
 <br>
-<h3>Cursos Disponíveis (<%= @courses.count %>)</h3>
+<h3>Meus Cursos (<%= @courses.count %>)</h3>
 <hr>
 
 <div class="row">
-  <% @courses.each do |course| %>
-    <div class="col-md-3">
-      <%= link_to dashboard_student_course_path(course.id), class: "link_course" do %>
-        <div class="card">
-          <%= image_tag(course.image_course, class: "card-img-top") %>
-          <div class="card-body">
-            <h5 class="card-title"><%= course.name %></h5>
-            <p class="card-text"><%= course.subtitle %></p>
-            <div class="text-center">
-              <%= link_to 'Acessar Curso', dashboard_student_course_path(course.id), class: "btn btn-primary" %>
-            </div>
-          </div>
-          <div class="card-footer text-muted text-center">
-            Sessões: <b><%= course.sections.count %></b> | Vídeos: <b><%= course.sections.map { |section| section.lessons.count }.inject(0, :+) %></b> | <%= course.created_at.to_s(:date_time_env) %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
+  <%= render 'courses' %>
 </div>

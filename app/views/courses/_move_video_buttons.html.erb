@@ -10,4 +10,6 @@
   <%= link_to 'Mover para Baixo', move_video_to_bottom_path(@course.id, lesson.id), class: "btn btn-primary" %>
 <% end %>
 
+<%= render 'modal_update_video', section: section, lesson: lesson %>
+
 <%= link_to 'Apagar Video', delete_video_section_path(@course.id, lesson.id), class: "btn btn-danger", method: :delete %>

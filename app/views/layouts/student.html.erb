@@ -9,7 +9,7 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.12/plyr.css" />
   </head>
 
   <body>
@@ -17,6 +17,6 @@
     <div class="dashboard_user">
       <%= yield %>
     </div>
-    <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
+    <%= render 'layouts/shared/video_config' %>
   </body>
 </html>
