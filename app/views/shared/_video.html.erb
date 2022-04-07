@@ -1,0 +1,61 @@
+<script src="https://cdn.plyr.io/3.6.12/plyr.polyfilled.js"></script>
+<video id="player-<%= id %>" playsinline controls data-poster="<%= attached_present(lesson.thumbnail) ? url_for(lesson.thumbnail) : nil %>">
+  <source src="<%= url_for(lesson.video) %>" type="video/mp4" />
+  <source src="<%= url_for(lesson.video) %>" type="video/webm" />
+</video>
+
+
+<script>
+  new Plyr("#player-<%= id %>", {
+    enabled: true,
+    controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip', 'airplay', 'fullscreen'],
+    settings: ['captions', 'quality', 'speed', 'loop'],
+    i18n: {
+      restart: 'Restart',
+      rewind: 'Rewind {seektime}s',
+      play: 'Play',
+      pause: 'Pausar',
+      fastForward: 'Forward {seektime}s',
+      seek: 'Seek',
+      seekLabel: '{currentTime} of {duration}',
+      played: 'Played',
+      buffered: 'Buffered',
+      currentTime: 'Current time',
+      duration: 'Duração',
+      volume: 'Volume',
+      mute: 'Com Som',
+      unmute: 'Sem Som',
+      enableCaptions: 'Habilitar Legendas',
+      disableCaptions: 'Desabilitar Legendas',
+      download: 'Download',
+      enterFullscreen: 'Enter fullscreen',
+      exitFullscreen: 'Exit fullscreen',
+      frameTitle: 'Player for {title}',
+      captions: 'Legendas',
+      settings: 'Configurações',
+      pip: 'PIP',
+      menuBack: 'Go back to previous menu',
+      speed: 'Velocidade',
+      normal: 'Normal',
+      quality: 'Qualidade',
+      loop: 'Loop',
+      start: 'Start',
+      end: 'End',
+      all: 'All',
+      reset: 'Reset',
+      disabled: 'Disabled',
+      enabled: 'Enabled',
+      advertisement: 'Ad',
+      qualityBadge: {
+        2160: '4K',
+        1440: 'HD',
+        1080: 'HD',
+        720: 'HD',
+        576: 'SD',
+        480: 'SD',
+      },
+    }
+  });
+</script>
+
+

@@ -6,27 +6,25 @@
       <div class="accordion-item">
         <h2 class="accordion-header" id="section<%= section.name %>">
           <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne<%= index %>" aria-expanded="true" aria-controls="collapseOne">
-            Sessão <%= index + 1%>: <span class="course_section_name"><%= section.name %></span>
+            Sessão <%= index + 1 %>: <span class="course_section_name"><%= section.name %></span>
           </button>
         </h2>
         <div id="collapseOne<%= index %>" class="accordion-collapse collapse" aria-labelledby="section<%= section.name %>" data-bs-parent="#accordionSections">
           <div class="accordion-body">
-            <h5>Video Aulas (<%= section.lessons.count %>)</h5>
+            <h5>Aulas (<%= section.lessons.count %>)</h5>
             <hr>
             <% section.lessons.order(position: :asc).each_with_index do |lesson, index| %>
               <% if lesson.video.persisted? then %>
                 <div class="card mb-3" style="">
                   <div class="row g-0">
                     <div class="col-md-4 col-xs-12">
-                      <div class="vide_clip">
-                        <video id="my-video" class="video-js" controls preload="auto" data-setup="{}" >
-                          <source src="<%= url_for(lesson.video) %>" type="video/mp4" />
-                        </video>
+                      <div class="">
+                        <%= render 'shared/video', lesson: lesson, id: lesson.id %>
                       </div>
                     </div>
                     <div class="col-md-8 col-xs-12">
                       <div class="card-body">
-                        <h5 class="card-title"><%= index + 1%> - <%= lesson.title %></h5>
+                        <h5 class="card-title"><%= index + 1%> - <%= lesson.title %> | <%#= "#{duration_video(lesson.video)}m" %> </h5>
                         <p class="card-text card_content"><%= lesson.content %></p>
                         <%= render 'comments', lesson: lesson %>
                       </div>
@@ -34,7 +32,7 @@
                   </div>
                 </div>
                 <br>
-              <% end%>
+              <% end %>
             <% end %>
           </div>
         </div>
