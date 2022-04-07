@@ -1,0 +1,27 @@
+<button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#commentsModal<%= lesson.id %>">
+  <i class="bi bi-chat-dots-fill"></i> Comentários (<%= lesson.comments.count %>)
+</button>
+
+<div class="modal fade" id="commentsModal<%= lesson.id %>" tabindex="-1" aria-labelledby="commentsModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="commentsModalLabel">Comentários</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <% lesson.comments.each do |comment| %>
+        <label><b><%= comment.student.email %></b> comentou</label>
+        <textarea class="form-control" style="height: auto" readonly><%= comment.content %></textarea>
+        a <%= distance_of_time_in_words(comment.created_at, Time.now) %> atrás
+        <br>
+        <%= link_to 'Apagar Comentário', delete_comment_student_path(@course.id, comment.id), class: "btn btn-danger", method: :delete %>
+        <hr>
+      <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar Comentários</button>
+      </div>
+    </div>
+  </div>
+</div>

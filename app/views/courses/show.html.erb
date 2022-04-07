@@ -31,7 +31,7 @@
 
     <div class="accordion" id="accordionSections">
       <% @sections.order(position: :asc).each_with_index do |section, index| %>
-        <div class="accordion-item">
+        <div class="accordion-item sortable">
           <h2 class="accordion-header" id="section<%= section.name %>">
             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne<%= index %>" aria-expanded="true" aria-controls="collapseOne">
               Sessão <%= index + 1%>: <span class="course_section_name"><%= section.name %></span>
@@ -47,13 +47,16 @@
                   <div class="card mb-3" style="">
                     <div class="row g-0">
                       <div class="col-md-3">
-                        <%= render 'shared/video', lesson: lesson %>
+                        <%= render 'shared/video', lesson: lesson, id: lesson.id %>
                       </div>
                       <div class="col-md-8">
                         <div class="card-body">
                           <h5 class="card-title"><%= index + 1%> - <%= lesson.title %></h5>
                           <p class="card-text"><%= lesson.content %></p>
                           <%= render 'move_video_buttons', section: section, course: @course, lesson: lesson %>
+
+                          <%= render 'comments', lesson: lesson %>
+                          <%= render 'resource_lesson', lesson: lesson %>
                         </div>
                       </div>
                     </div>
@@ -62,7 +65,7 @@
                 <% end%>
               <% end %>
               <br>
-              <%= render 'modal_add_video', section: section, lesson: @lesson %> | <%= render 'modal_update_section', section: section %> | <%= link_to 'Apagar Sessão', destroy_section_in_course_path(@course.id, section.id), class: "btn btn-danger", method: :delete %> | <%= render 'move_section_buttons', section: section, course: @course %>
+              <%= render 'modal_add_video', section: section, lesson: @lesson %> | <%= render 'modal_update_section', section: section %> | <%= link_to 'Apagar Sessão', destroy_section_in_course_path(@course.id, section.id), class: "btn btn-danger", method: :delete, data: { confirm: "Tem certeza que deseja apagar esta Sessão? A ação não poderá ser desfeita e todos seus (#{section.lessons.count}) Videos serão excluídos para sempre!" } %> | <%= render 'move_section_buttons', section: section, course: @course %>
             </div>
           </div>
         </div>

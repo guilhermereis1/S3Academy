@@ -12,4 +12,4 @@
 
 <%= render 'modal_update_video', section: section, lesson: lesson %>
 
-<%= link_to 'Apagar Video', delete_video_section_path(@course.id, lesson.id), class: "btn btn-danger", method: :delete %>
+<%= link_to 'Apagar Aula', delete_video_section_path(@course.id, lesson.id), class: "btn btn-danger", method: :delete, data: { confirm: 'Tem certeza que deseja apagar esta Aula? A ação não poderá ser desfeita!' } %>

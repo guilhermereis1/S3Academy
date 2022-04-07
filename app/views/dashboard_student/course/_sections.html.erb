@@ -27,6 +27,7 @@
                         <h5 class="card-title"><%= index + 1%> - <%= lesson.title %> | <%#= "#{duration_video(lesson.video)}m" %> </h5>
                         <p class="card-text card_content"><%= lesson.content %></p>
                         <%= render 'comments', lesson: lesson %>
+                        <%= render 'resource_lesson', lesson: lesson %>
                       </div>
                     </div>
                   </div>

@@ -1,8 +1,8 @@
 <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#commentsModal<%= lesson.id %>">
-  Comentários (<%= lesson.comments.count %>)
+  <i class="bi bi-chat-dots-fill"></i> Comentários (<%= lesson.comments.count %>)
 </button>
 
-<div class="modal fade" id="commentsModal<%= lesson.id %>"" tabindex="-1" aria-labelledby="commentsModalLabel" aria-hidden="true">
+<div class="modal fade" id="commentsModal<%= lesson.id %>" tabindex="-1" aria-labelledby="commentsModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">

@@ -1,0 +1,29 @@
+<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalResourcesLesson">
+ <i class="bi bi-folder2-open"></i> Recursos (<%= lesson.lesson_resources.count %>)
+</button>
+
+<div class="modal fade" id="modalResourcesLesson" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Recurso da Aula <i class="bi bi-folder2-open"></i></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ul class="list-group">
+          <% lesson.lesson_resources.each_with_index do |resource_lesson, index| %>
+            <li class="list-group-item">
+              <%= link_to "Visualizar Recurso", rails_blob_path(resource_lesson, disposition: 'preview'), class: 'btn btn-primary' , target: '_blank' %>
+              <%= link_to "Baixar Recurso", rails_blob_path(resource_lesson, disposition: 'attachment'), class: 'btn btn-success' %>
+              <%= identify_content_type(resource_lesson)[:icon] %>
+              <%= link_to resource_lesson.filename, rails_blob_path(resource_lesson, disposition: 'attachment') %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  delete 'delete_lesson_resource/:course_id/:id' => 'courses#delete_lesson_resource', as: :delete_lesson_resource
+  delete 'delete_comment_student/:course_id/:comment_id' => 'courses#delete_comment_student', as: :delete_comment_student
   resources :notifications
   namespace :dashboard_user do
     get 'users/index'

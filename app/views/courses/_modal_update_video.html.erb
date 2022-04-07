@@ -18,18 +18,27 @@
             </div>
 
             <div class="col-md-12">
+              <br>
               <label>Video</label>
               <%= form.file_field :video, class: "form-control", direct_upload: true %>
             </div>
 
             <div class="col-md-12">
+              <br>
               <label>Título *</label>
               <%= form.text_field :title, value: lesson.title, class: "form-control", placeholder: "Ex: Como instalar o Windows" %>
             </div>
 
             <div class="col-md-12">
+              <br>
               <label>Descrição</label>
               <%= form.text_area :content, value: lesson.content, class: "form-control" %>
+            </div>
+
+            <div class="col-md-12">
+              <br>
+              <label for="">Recursos para Aula</label>
+              <%= form.file_field :lesson_resources, class: "form-control", direct_upload: true, multiple: true %>
             </div>
           </div>
           <div class="text-center">

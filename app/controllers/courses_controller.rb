@@ -168,6 +168,10 @@ class CoursesController < ApplicationController
         lesson.update(video: params[:lesson][:video])
       end
 
+      if params[:lesson][:lesson_resources].present? then
+        lesson.update(lesson_resources: params[:lesson][:lesson_resources])
+      end
+
       respond_to do |format|
         if lesson.save
           format.html { redirect_to course_path(course_id), notice: "Upload feito com sucesso!" }
@@ -196,6 +200,29 @@ class CoursesController < ApplicationController
     end
   end
 
+  def delete_comment_student
+    course_id = params[:course_id]
+    comment_id = params[:comment_id]
+
+    if comment_id.present? then
+      comment = Comment.find(comment_id)
+      comment.destroy
+
+      respond_to do |format|
+        format.html { redirect_to course_path(course_id), notice: "Comentário Excluído com sucesso!" }
+      end
+    end
+  end
+
+  def delete_lesson_resource
+    @attachment =  ActiveStorage::Attachment.find(params[:id])
+    @attachment.purge
+    
+    respond_to do |format|
+      format.html { redirect_to course_path(params[:course_id]), notice: "Recurso Excluído com sucesso!" }
+    end
+  end
+
   def move_to_up
     move_up(params[:course_id], params[:section_id])
   end
@@ -213,38 +240,39 @@ class CoursesController < ApplicationController
   end
 
   private
-    def move_up(course_id, section_id)
-      Section.find(section_id).move_higher
-      respond_to_moves(course_id)
-    end
 
-    def move_up_video(course_id, lesson_id)
-      Lesson.find(lesson_id).move_higher
-      respond_to_moves(course_id)
-    end
+  def move_up(course_id, section_id)
+    Section.find(section_id).move_higher
+    respond_to_moves(course_id)
+  end
 
-    def move_bottom(course_id, section_id)
-      Section.find(section_id).move_lower
-      respond_to_moves(course_id)
-    end
+  def move_up_video(course_id, lesson_id)
+    Lesson.find(lesson_id).move_higher
+    respond_to_moves(course_id)
+  end
 
-    def move_bottom_video(course_id, lesson_id)
-      Lesson.find(lesson_id).move_lower
-      respond_to_moves(course_id)
-    end
+  def move_bottom(course_id, section_id)
+    Section.find(section_id).move_lower
+    respond_to_moves(course_id)
+  end
 
-    def respond_to_moves(course_id)
-      respond_to do |format|
-        format.html { redirect_to course_path(course_id), notice: "Sessão movida com sucesso!" }
-      end
-    end
-    # Use callbacks to share common setup or constraints between actions.
-    def set_course
-      @course = Course.find(params[:id])
-    end
+  def move_bottom_video(course_id, lesson_id)
+    Lesson.find(lesson_id).move_lower
+    respond_to_moves(course_id)
+  end
 
-    # Only allow a list of trusted parameters through.
-    def course_params
-      params.require(:course).permit(:name, :subtitle, :content, :image_course)
+  def respond_to_moves(course_id)
+    respond_to do |format|
+      format.html { redirect_to course_path(course_id), notice: "Sessão movida com sucesso!" }
     end
+  end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_course
+    @course = Course.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def course_params
+    params.require(:course).permit(:name, :subtitle, :content, :image_course)
+  end
 end
