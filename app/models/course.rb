@@ -15,4 +15,6 @@ class Course < ApplicationRecord
   has_many :subscriptions, dependent: :destroy
 
   default_scope { order(created_at: :desc) }
+
+  enum status: { active: 0, inactive: 1 }
 end

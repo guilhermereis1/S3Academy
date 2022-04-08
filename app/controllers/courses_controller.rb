@@ -10,7 +10,6 @@ class CoursesController < ApplicationController
 
   # GET /courses/1 or /courses/1.json
   def show
-    @sections = Section.where(course_id: @course.id)
     @lesson = Lesson.new
     @course_users = Subscription.where(course_id: @course.id)
     @students = Student.where.not(id: @course_users.pluck(:student_id))
@@ -125,7 +124,7 @@ class CoursesController < ApplicationController
   def add_video_section
     course_id = params[:course_id]
     section_id = params[:section_id]
-    title = params[:lesson][:title]
+    title = params[:lesson][:title].present? ? params[:lesson][:title] : "Aula sem título"
     content = params[:lesson][:content]
 
     if course_id.present? && section_id.present? && title.present? then
