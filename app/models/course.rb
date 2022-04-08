@@ -17,4 +17,7 @@ class Course < ApplicationRecord
   default_scope { order(created_at: :desc) }
 
   enum status: { active: 0, inactive: 1 }
+
+  extend FriendlyId
+  friendly_id :name, use: :slugged
 end
