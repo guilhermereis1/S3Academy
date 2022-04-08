@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>S3 Courses Learning</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,6 +9,16 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= favicon_link_tag asset_path('logo_3.png') %>
+
+    <% if @course.present? %>
+      <%= display_meta_tags og: { url: "a", title: @course.name, type: 'website', description: "#{@course.content}", image: url_for(@course.image_course), site_name: "S3 Academy", description: "#{@course.content}", image: { width: '300', height: '300' } } %>
+      <% title @course.name %>
+      <% description "#{@course.content}" %>
+      <% set_meta_tags image_src: url_for(@course.image_course) %>
+      <% keywords "#{@course.name}" %>
+    <% else %>
+      <title>S3 Courses Learning</title>
+    <% end %>
   </head>
 
   <body>

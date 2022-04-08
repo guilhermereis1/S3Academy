@@ -4,6 +4,6 @@ class HomeController < ApplicationController
   end
 
   def show
-    @course = Course.find_by(status: 'inactive', id: params[:course_id])
+    @course = Course.friendly.find_by(params[:slug])
   end
 end
