@@ -8,10 +8,11 @@
 }
 
 .logo_dashboard {
-  width: 50px;
+  width: 60px;
 }
 
 .image_avatar{
+  width: 60px;
   border-radius: 100px;
   border: 2px solid rgb(225, 225, 230);
   padding: 2px;
@@ -22,4 +23,12 @@
 
 ul.dropdown-menu.show {
   margin-left: -69px;
+}
+
+.logo_student{
+  margin: 0 auto;
+}
+
+.logo_student img{
+  width: 300px;
 }

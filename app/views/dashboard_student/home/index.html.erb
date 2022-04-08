@@ -5,6 +5,7 @@
   <div class="card-body">
     <h5 class="card-title">Olá <b><%= current_student.email%></b>! </h5>
     <p class="card-text">Aqui você vai pode acessar os Cursos que estão Disponível na plataforma! :)</p>
+    <%= link_to('Sair', destroy_student_session_path, method: :delete, class: "btn btn-danger") %>
   </div>
 </div>
 <br>
