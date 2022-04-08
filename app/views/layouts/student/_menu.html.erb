@@ -1,9 +1,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <%= link_to dashboard_student_home_index_path, class: "navbar-brand" do %>
-      <%= image_tag("logo.png", class: "logo_dashboard") %>
+      <%= image_tag("logo_3.png", class: "logo_dashboard") %>
     <% end %>
-    <%#= link_to 'Home', dashboard_student_home_index_path, class: "navbar-brand" %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -22,9 +21,9 @@
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 <% if attached_present(current_student.avatar) %>
-                  <%= image_tag(current_student.avatar, width: '60px', class: 'image_avatar') %>
+                  <%= image_tag(current_student.avatar, class: 'image_avatar') %>
                 <% else %>
-                  <%= image_tag("unavailable.png", width: '60px', class: 'image_avatar') %>
+                  <%= image_tag("unavailable.png", class: 'image_avatar') %>
                 <% end %>
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
