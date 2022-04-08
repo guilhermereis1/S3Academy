@@ -18,3 +18,13 @@
 .dashboard_user {
   margin: 30px;
 }
+
+@media only screen and (max-width: 600px) {
+  .login_user {
+    margin: 10px;
+  }
+}
+
+.button_sign_up{
+  margin-top: 200px
+}
