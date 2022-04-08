@@ -2,7 +2,7 @@
   <div class="col-md-3">
     <%= link_to course, class: "link_course" do %>
       <div class="card">
-        <%= image_tag(course.image_course, class: "card-img-top") %>
+        <%= attached_present(course.image_course) ? image_tag(course.image_course, class: "card-img-top") : image_tag("unavailable.png", width: "100%") %>
         <div class="card-body">
           <h5 class="card-title"><%= course.name %></h5>
           <p class="card-text"><%= truncate(course.subtitle, :length => 114) %></p>
