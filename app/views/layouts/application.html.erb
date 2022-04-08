@@ -11,13 +11,37 @@
     <%= favicon_link_tag asset_path('logo_3.png') %>
 
     <% if @course.present? %>
-      <%= display_meta_tags og: { url: "a", title: @course.name, type: 'website', description: "#{@course.content}", image: url_for(@course.image_course), site_name: "S3 Academy", description: "#{@course.content}", image: { width: '300', height: '300' } } %>
+      <title>S3 Academy - <%= @course.name %></title>
+      <%= display_meta_tags og: { url: ENV['HOST_URL'], title: @course.name, type: 'website', description: "#{@course.content}", image: "#{ENV['HOST_URL']}#{url_for(@course.image_course)}", site_name: "S3 Academy", description: "#{@course.content}", image: { width: '300', height: '300' } } %>
+
       <% title @course.name %>
       <% description "#{@course.content}" %>
-      <% set_meta_tags image_src: url_for(@course.image_course) %>
+      <% set_meta_tags image_src: "#{ENV['HOST_URL']}#{url_for(@course.image_course)}" %>
       <% keywords "#{@course.name}" %>
+
+      <meta charset="utf-8">
+      <meta name="language" content="pt-br">
+      <title><%= @course.name %></title>
+      <meta name="description" content="<%= @course.content %>">
+      <meta name="robots" content="">
+      <meta name="author" content="">
+      <meta name="keywords" content="">
+
+      <meta property="og:type" content="page">
+      <meta property="og:url" content="<%= ENV['HOST_URL'] %>">
+      <meta property="og:title" content="<%= @course.name %>">
+      <meta property="og:image" content="<%= "#{ENV['HOST_URL']}#{url_for(@course.image_course)}" %>">
+      <meta property="og:description" content="<%= @course.content %>">
+
+      <meta property="article:author" content="<%= @course.name %>">
+
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:site" content="<%= ENV['HOST_URL'] %>">
+      <meta name="twitter:title" content="<%= @course.name %>">
+      <meta name="twitter:creator" content="<%= @course.name %>">
+      <meta name="twitter:description" content="<%= @course.content %>">
     <% else %>
-      <title>S3 Courses Learning</title>
+      <title>S3 Academy</title>
     <% end %>
   </head>
 
