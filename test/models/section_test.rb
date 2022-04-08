@@ -2,9 +2,9 @@
 #
 # Table name: sections
 #
-#  id         :bigint           not null, primary key
+#  id         :uuid             not null, primary key
 #  name       :string           not null
-#  course_id  :bigint           not null
+#  course_id  :uuid             not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #  position   :integer

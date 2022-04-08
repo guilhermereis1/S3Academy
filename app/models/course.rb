@@ -2,7 +2,7 @@
 #
 # Table name: courses
 #
-#  id         :bigint           not null, primary key
+#  id         :uuid             not null, primary key
 #  name       :string           not null
 #  subtitle   :string
 #  content    :text

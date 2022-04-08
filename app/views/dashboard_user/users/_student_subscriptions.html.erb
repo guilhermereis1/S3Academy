@@ -1,0 +1,20 @@
+<h2>Inscrições (<%= @subscriptions.count %>)</h2>
+<hr>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Curso</th>
+      <th scope="col">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="table align-middle">
+      <% @subscriptions.each do |subscription| %>
+        <td><%= subscription.id %></td>
+        <td><%= subscription.course.name %></td>
+        <td><%= link_to 'Ver', course_path(subscription.course.id), class: "btn btn-primary" %></td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
