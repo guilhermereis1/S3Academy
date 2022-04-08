@@ -8,5 +8,18 @@
 }
 
 .logo_dashboard {
-  width: 100px;
+  width: 50px;
+}
+
+.image_avatar{
+  border-radius: 100px;
+  border: 2px solid rgb(225, 225, 230);
+  padding: 2px;
+  border-radius: 100%;
+  background-size: cover;
+  background-clip: content-box;
+}
+
+ul.dropdown-menu.show {
+  margin-left: -69px;
 }

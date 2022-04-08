@@ -20,6 +20,8 @@ class Student < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :subscriptions, dependent: :destroy
 
+  has_one_attached :avatar
+
   enum status: { active: 0, inactive: 1 }
 
   after_create :registration_student

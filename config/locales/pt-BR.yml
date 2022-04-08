@@ -10,6 +10,7 @@ pt-BR:
         user: Usuário
         course: Curso
         notification: Notificação
+        student: Aluno
 
       attributes: &attributes
         <<: *models
@@ -20,6 +21,7 @@ pt-BR:
         encrypted_password: Senha Criptografada
         password: Senha
         password_confirmation: Confirmação da Senha
+        current_password: Senha Atual
         avatar_image: Imagem de Avatar
         remove_avatar_image: Excluir Imagem
         statuses:
@@ -52,6 +54,11 @@ pt-BR:
         <<: *attributes
         name: Título
         content: Descrição
+
+      student:
+        <<: *attributes
+        email: Email
+        status: Status
 
     errors:
       messages:
