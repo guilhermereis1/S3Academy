@@ -3,14 +3,29 @@
 </button>
 
 <div class="modal fade" id="addUserToCourse" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Vincular Usuário</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        ...
+        <%= form_tag add_student_to_course_path(@course.id), method: :post do %>
+          <div class="row">
+            <div class="col-md-12">
+              <label for="">Curso</label>
+              <input type="text" class="form-control" value="<%= @course.name %>" disabled>
+            </div>
+            <div class="col-md-12">
+              <label for="">Usuário</label>
+              <%= select(:student, :student_id, @students.collect { |p| [ p.email, p.id ] }, { include_blank: "Selecionar" }, class: "form-control") %>
+            </div>
+          </div>
+          <div class="text-center">
+            <br>
+            <%= submit_tag "Adicionar", class: "btn btn-primary"%>
+          </div>
+        <% end %>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>

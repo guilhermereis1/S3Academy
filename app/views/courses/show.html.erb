@@ -10,6 +10,11 @@
       <label class="text-center">Imagem de Capa</label>
       <%= image_tag(@course.image_course) %>
     </div>
+
+    <br>
+    <div class="text-center">
+      <%= link_to 'Editar Curso', edit_course_path(@course), class: "btn btn-warning" %> | <%= link_to 'Voltar', courses_path, class: "btn btn-secondary" %>
+    </div>
   </div>
 
   <div class="col-md-10">
@@ -22,7 +27,7 @@
     <label for=""><b>Descrição</b></label>
     <textarea class="form-control" readonly rows="6"><%= @course.content %></textarea>
     <br>
-    <%= link_to 'Editar', edit_course_path(@course), class: "btn btn-warning" %> | <%= link_to 'Voltar', courses_path, class: "btn btn-secondary" %> | <%= render 'modal_section' %> | <%= render 'course_users' %>
+    <%= render 'modal_section' %> | <%= render 'course_users' %> | <%= render 'add_user_to_course' %>
 
     <br>
     <br>

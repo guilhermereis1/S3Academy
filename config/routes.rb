@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  delete 'remove_student_from_course/:course_id/:student_id' => 'courses#remove_student_from_course', as: :remove_student_from_course
+  post 'add_student_to_course/:course_id' => 'courses#add_student_to_course', as: :add_student_to_course
   delete 'delete_lesson_resource/:course_id/:id' => 'courses#delete_lesson_resource', as: :delete_lesson_resource
   delete 'delete_comment_student/:course_id/:comment_id' => 'courses#delete_comment_student', as: :delete_comment_student
   resources :notifications

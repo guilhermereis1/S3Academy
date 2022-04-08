@@ -1,5 +1,5 @@
 <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#courseUsersList">
-  Alunos Matriculados
+  Alunos Matriculados (<%= @course_users.count %>)
 </button>
 
 <div class="modal fade" id="courseUsersList" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -15,13 +15,15 @@
             <tr>
               <th scope="col">Identificador</th>
               <th scope="col">Email</th>
+              <th scope="col">Ações</th>
             </tr>
           </thead>
           <tbody>
             <% @course_users.each do |course| %>
-              <tr>
+              <tr class="table align-middle">
                 <th scope="row"><%= course.student.id %></th>
                 <td><%= course.student.email %></td>
+                <td><%= link_to "Remover Aluno", remove_student_from_course_path(@course.id, course.student.id), class: 'btn btn-danger', method: :delete %></td>
               </tr>
             <% end %>
           </tbody>

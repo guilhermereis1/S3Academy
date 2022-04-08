@@ -13,6 +13,7 @@ class CoursesController < ApplicationController
     @sections = Section.where(course_id: @course.id)
     @lesson = Lesson.new
     @course_users = Subscription.where(course_id: @course.id)
+    @students = Student.where.not(id: @course_users.pluck(:student_id))
   end
 
   # GET /courses/new
@@ -215,11 +216,47 @@ class CoursesController < ApplicationController
   end
 
   def delete_lesson_resource
-    @attachment =  ActiveStorage::Attachment.find(params[:id])
+    @attachment = ActiveStorage::Attachment.find(params[:id])
     @attachment.purge
     
     respond_to do |format|
       format.html { redirect_to course_path(params[:course_id]), notice: "Recurso Excluído com sucesso!" }
+    end
+  end
+
+  def add_student_to_course
+    course_id = params[:course_id]
+    student_id = params[:student][:student_id]
+
+    if course_id.present? && student_id.present? then
+      course = Course.find(course_id)
+      student = Student.find(student_id)
+
+      subscription = Subscription.new(course_id: course_id, student_id: student_id)
+
+      if subscription.save
+        respond_to do |format|
+          format.html { redirect_to course_path(course_id), notice: "Aluno adicionado com sucesso!" }
+        end
+      end
+    end
+  end
+
+  def remove_student_from_course
+    course_id = params[:course_id]
+    student_id = params[:student_id]
+
+    if course_id.present? && student_id.present? then
+      course = Course.find(course_id)
+      student = Student.find(student_id)
+
+      subscription = Subscription.where(course_id: course_id, student_id: student_id)
+
+      subscription.destroy_all
+
+      respond_to do |format|
+        format.html { redirect_to course_path(course_id), notice: "Aluno removido com sucesso!" }
+      end
     end
   end
 
