@@ -55,9 +55,27 @@ class CoursesController < ApplicationController
 
   # DELETE /courses/1 or /courses/1.json
   def destroy
+    course_id = @course.id
+    @course.image_course.purge
+
+    sections = Section.where(course_id: course_id)
+
+    sections.each do |s|
+      lessons = Lesson.where(section_id: s.id)
+      lessons.each do |l|
+        l.video.purge
+        l.thumbnail.purge
+
+        l.lesson_resources.each do |lr|
+          lr.purge
+        end
+      end
+    end
+
     @course.destroy
+
     respond_to do |format|
-      format.html { redirect_to courses_url, notice: "Course was successfully destroyed." }
+      format.html { redirect_to courses_url, notice: "Curso excluído com sucesso!" }
       format.json { head :no_content }
     end
   end
@@ -303,6 +321,7 @@ class CoursesController < ApplicationController
       format.html { redirect_to course_path(course_id), notice: "Sessão movida com sucesso!" }
     end
   end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_course
     @course = Course.find(params[:id])

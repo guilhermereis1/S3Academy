@@ -11,7 +11,7 @@
       </div>
       <div class="modal-body">
         <ul class="list-group">
-          <% lesson.lesson_resources.each_with_index do |resource_lesson, index| %>
+          <% lesson.lesson_resources.each do |resource_lesson| %>
             <li class="list-group-item">
               <%= link_to 'Remover', delete_lesson_resource_path(@course.id, resource_lesson.id), class: "btn btn-danger", method: :delete, data: { confirm: 'Tem certeza disso?' } %>
 

@@ -8,7 +8,7 @@
   <div class="col-md-2">
     <div class="card">
       <label class="text-center">Imagem de Capa</label>
-      <%= image_tag(@course.image_course) %>
+      <%= attached_present(@course.image_course) ? image_tag(@course.image_course, class: "card-img-top") : image_tag("unavailable.png", width: "100%") %>
     </div>
 
     <br>
