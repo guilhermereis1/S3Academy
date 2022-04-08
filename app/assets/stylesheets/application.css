@@ -20,3 +20,12 @@
   margin: 0;
   font-family: Nunito;
 }
+
+.footer{
+  text-align: center;
+  margin: 0 auto;
+}
+
+.image_footer{
+  width: 250px;
+}
