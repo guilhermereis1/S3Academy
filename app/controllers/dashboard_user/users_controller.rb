@@ -11,6 +11,7 @@ class DashboardUser::UsersController < ApplicationController
 
     if student_id.present? then
       @student = Student.find(student_id)
+      @subscriptions = Subscription.where(student_id: student_id)
     end
   end
 
@@ -38,6 +39,18 @@ class DashboardUser::UsersController < ApplicationController
     student_id = params[:student_id]
 
     @student = Student.find(student_id)
+  end
+
+  def update_status_student
+    student_id = params[:student_id]
+    student = Student.find(student_id)
+
+    if student.status == "active" then
+      student.update(status: "inactive")
+    else
+      student.update(status: "active")
+    end
+    redirect_to dashboard_user_users_index_path
   end
 
   def save_student_updated

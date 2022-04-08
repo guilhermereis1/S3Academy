@@ -6,13 +6,32 @@
 
 <h2>Informações do Usuário</h2>
 <hr>
+<%= link_to 'Voltar', dashboard_user_users_index_path, class: "btn btn-secondary" %>
+<br>
+<br>
 <div class="row">
   <div class="col-md-6">
     <input type="text" value="<%= @student.id %>" class="form-control" disabled>
   </div>
   <div class="col-md-6">
+    <input type="text" value="<%= @student.registration %>" class="form-control" disabled>
+  </div>
+</div>
+
+<br>
+
+<div class="row">
+  <div class="col-md-6">
     <input type="text" value="<%= @student.email %>" class="form-control" disabled>
+  </div>
+  <div class="col-md-6">
+    <input type="text" value="<%= @student.status == "active" ? "Ativo" : "Inativo" %>" class="form-control" disabled>
+  </div>
+
+  <div class="col-md-12">
+    <br>
+    <input type="text" value="<%= @student.created_at.to_s(:date_time_env_specific) %>" class="form-control" disabled>
   </div>
 </div>
 <br>
-<%= link_to 'Voltar', dashboard_user_users_index_path, class: "btn btn-secondary" %>
+<%= render 'student_subscriptions' %>
