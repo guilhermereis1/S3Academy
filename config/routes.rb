@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   delete 'delete_comment_student/:course_id/:comment_id' => 'courses#delete_comment_student', as: :delete_comment_student
   resources :notifications
   namespace :dashboard_user do
+    put 'update_status_student/:student_id' => 'users#update_status_student', as: :update_status_student
     get 'users/index'
     get 'students/:student_id' => 'users#show', as: :view_student
     get 'create_student' => 'users#create', as: :create_student

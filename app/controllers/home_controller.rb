@@ -1,10 +1,9 @@
 class HomeController < ApplicationController
   def index
-    @courses = Course.all
+    @courses = Course.where(status: 'inactive')
   end
 
   def show
-    @course = Course.find(params[:course_id])
-    @sections = Section.where(course_id: @course.id)
+    @course = Course.friendly.find_by(params[:slug])
   end
 end

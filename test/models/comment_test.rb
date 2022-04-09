@@ -2,9 +2,9 @@
 #
 # Table name: comments
 #
-#  id         :bigint           not null, primary key
-#  student_id :bigint           not null
-#  lesson_id  :bigint           not null
+#  id         :uuid             not null, primary key
+#  student_id :uuid             not null
+#  lesson_id  :uuid             not null
 #  content    :text             not null
 #  status     :integer          default(0)
 #  created_at :datetime         not null

@@ -1,13 +1,19 @@
 <% if lesson.position == 1 then %>
   <button class="btn btn-primary" disabled>Mover para Cima</button>
 <% else %>
-  <%= link_to 'Mover para Cima', move_video_to_up_path(@course.id, lesson.id), class: "btn btn-primary" %>
+  <%= link_to move_video_to_up_path(@course.id, lesson.id), class: "btn btn-primary" do %>
+    Mover para Cima <i class="bi bi-arrow-up"></i>
+  <% end %>
 <% end %>
+
+
 
 <% if section.lessons.maximum(:position) == lesson.position then %>
   <button class="btn btn-primary" disabled>Mover para Baixo</button>
 <% else %>
-  <%= link_to 'Mover para Baixo', move_video_to_bottom_path(@course.id, lesson.id), class: "btn btn-primary" %>
+  <%= link_to move_video_to_bottom_path(@course.id, lesson.id), class: "btn btn-primary" do %>
+    Mover para Baixo <i class="bi bi-arrow-down"></i>
+  <% end %>
 <% end %>
 
 <%= render 'modal_update_video', section: section, lesson: lesson %>

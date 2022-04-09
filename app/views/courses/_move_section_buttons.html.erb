@@ -1,11 +1,15 @@
 <% if section.position == 1 then %>
   <button class="btn btn-secondary" disabled>Mover Sessão para Cima</button>
 <% else %>
-  <%= link_to 'Mover Sessão para Cima', move_section_to_up_path(@course.id, section.id), class: "btn btn-secondary" %>
+  <%= link_to move_section_to_up_path(@course.id, section.id), class: "btn btn-secondary" do %>
+    Mover Sessão para Cima <i class="bi bi-arrow-up"></i>
+  <% end %>
 <% end %>
 
-<% if @sections.maximum(:position) == section.position then %>
+<% if @course.sections.maximum(:position) == section.position then %>
   <button class="btn btn-secondary" disabled>Mover Sessão para Baixo</button>
 <% else %>
-  <%= link_to 'Mover Sessão para Baixo', move_section_to_bottom_path(@course.id, section.id), class: "btn btn-secondary" %>
+  <%= link_to move_section_to_bottom_path(@course.id, section.id), class: "btn btn-secondary" do %>
+    Mover Sessão para Baixo <i class="bi bi-arrow-down"></i>
+  <% end %>
 <% end %>

@@ -1,12 +1,12 @@
-<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editVideo<%= section.id %>">
+<button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#editVideo<%= lesson.id %>">
   Editar Aula
 </button>
 
-<div class="modal fade" id="editVideo<%= section.id %>" tabindex="-1" aria-labelledby="editVideo<%= section.id %>" aria-hidden="true">
+<div class="modal fade" id="editVideo<%= lesson.id %>" tabindex="-1" aria-labelledby="editVideo<%= lesson.id %>" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="editVideo<%= section.id %>">Adicionar Video</h5>
+        <h5 class="modal-title" id="editVideo<%= lesson.id %>">Adicionar Video</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -32,7 +32,7 @@
             <div class="col-md-12">
               <br>
               <label>Descrição</label>
-              <%= form.text_area :content, value: lesson.content, class: "form-control" %>
+              <%= form.text_area :content, value: lesson.content, class: "form-control", rows: 6 %>
             </div>
 
             <div class="col-md-12">
