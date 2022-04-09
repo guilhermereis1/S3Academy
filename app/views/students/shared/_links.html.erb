@@ -4,9 +4,7 @@
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
   <div class="button_sign_up">
-    <%#= image_tag('rocket_2.svg', width: '200px') %>
-    <div>Ainda não possui uma conta?</div>
-    <%= link_to "Registre-se agora", new_registration_path(resource_name), class: "btn btn-primary" %>
+    <%= link_to "Ainda não possui uma conta? Registre-se agora", new_registration_path(resource_name), class: "btn btn-primary" %>
   </div>
 <% end %>
 
