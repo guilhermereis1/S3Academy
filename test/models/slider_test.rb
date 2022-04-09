@@ -1,19 +1,16 @@
 # == Schema Information
 #
-# Table name: courses
+# Table name: sliders
 #
 #  id         :uuid             not null, primary key
-#  name       :string           not null
-#  subtitle   :string
-#  content    :text
+#  name       :string
+#  active     :boolean          default(TRUE)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  status     :integer          default("inactive")
-#  slug       :string
 #
 require "test_helper"
 
-class CourseTest < ActiveSupport::TestCase
+class SliderTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
