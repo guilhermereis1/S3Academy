@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
   def index
     @courses = Course.where(status: 'inactive')
+    @sliders = Slider.where(active: true)
   end
 
   def show

@@ -8,6 +8,8 @@
 #  content    :text
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  status     :integer          default("inactive")
+#  slug       :string
 #
 class Course < ApplicationRecord
   has_one_attached :image_course, dependent: :destroy
