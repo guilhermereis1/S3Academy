@@ -1,0 +1,13 @@
+<div class="carousel_home">
+  <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <% @sliders.each_with_index do |slide, index| %>
+        <% if attached_present(slide.image) %>
+          <div data-slide-to="<%= index %>" class="carousel-item <%= index == 0 ? 'active' : '' %>">
+            <%= image_tag(slide.image, class: 'd-block w-100') %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

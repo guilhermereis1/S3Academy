@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<div class="card mb-3">
+  <% if attached_present(@slider.image) %>
+    <%= image_tag(@slider.image, class: "card-img-top") %>
+  <% else %>
+    <h3>Sem imagem</h3>
+  <% end %>
+  <div class="card-body">
+    <h5 class="card-title"><%= @slider.name %></h5>
+  </div>
+</div>
+
+<%= link_to 'Editar', edit_slider_path(@slider), class: 'btn btn-warning' %> | <%= link_to 'Voltar', sliders_path, class: 'btn btn-secondary' %>

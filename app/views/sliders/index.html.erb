@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Sliders</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Imagem</th>
+      <th>Nome</th>
+      <th>Ações</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sliders.each do |slider| %>
+      <tr class="table align-middle">
+        <% if attached_present(slider.image) %>
+          <td>
+            <%= image_tag(slider.image, width: '70px') %>
+          </td>
+        <% else %>
+          <td>
+            <%= image_tag('unavailable.png', width: '70px') %>
+          </td>
+        <% end %>
+        <td><%= slider.name %></td>
+        <td>
+        <%= link_to 'Ver', slider, class: 'btn btn-primary' %> | <%= link_to 'Editar', edit_slider_path(slider), class: 'btn btn-warning' %>
+        <%= link_to 'Apagar', slider, method: :delete, data: { confirm: 'Tem certeza disso?' }, class: 'btn btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Novo Slider', new_slider_path, class: 'btn btn-primary' %>
