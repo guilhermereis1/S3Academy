@@ -14,11 +14,11 @@
       </ul>
       <form class="d-flex">
         <% if student_signed_in? %>
-          <%= link_to 'Painel do Aluno', dashboard_student_home_index_path, class: "btn btn-outline-success me-2" %>
-          <%= link_to('Sair', destroy_student_session_path, method: :delete, class: "btn btn-danger") %>
+          <%#= link_to 'Painel do Aluno', dashboard_student_home_index_path, class: "btn btn-outline-success me-2" %>
+          <%#= link_to('Sair', destroy_student_session_path, method: :delete, class: "btn btn-danger") %>
         <% else %>
-          <%= link_to 'Painel do Aluno', dashboard_student_home_index_path, class: "btn btn-outline-success me-2" %>
-          <%= link_to 'Cadastre-se', new_student_registration_path, class: 'btn btn-outline-primary me-2' %>
+          <%#= link_to 'Painel do Aluno', dashboard_student_home_index_path, class: "btn btn-outline-success me-2" %>
+          <%#= link_to 'Cadastre-se', new_student_registration_path, class: 'btn btn-outline-primary me-2' %>
         <% end %>
       </form>
     </div>

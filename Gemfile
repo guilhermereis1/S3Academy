@@ -18,6 +18,9 @@ gem 'active_storage_validations'
 gem 'mini_magick', '>= 4.9.5'
 gem 'friendly_id', '~> 5.4.0'
 gem 'meta-tags'
+gem 'cors'
+gem 'jwt'
+gem 'active_model_serializers', '~> 0.10.0'
 
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'dotenv-rails', groups: [:development, :test]
