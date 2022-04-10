@@ -9,12 +9,12 @@
     </tr>
   </thead>
   <tbody>
-    <tr class="table align-middle">
-      <% @subscriptions.each do |subscription| %>
+    <% @subscriptions.each do |subscription| %>
+      <tr class="table align-middle">
         <td><%= subscription.id %></td>
         <td><%= subscription.course.name %></td>
         <td><%= link_to 'Ver', course_path(subscription.course.id), class: "btn btn-primary" %></td>
-      <% end %>
-    </tr>
+      </tr>
+    <% end %>
   </tbody>
 </table>
