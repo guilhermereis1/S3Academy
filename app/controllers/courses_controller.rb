@@ -142,10 +142,11 @@ class CoursesController < ApplicationController
   def add_video_section
     course_id = params[:course_id]
     section_id = params[:section_id]
-    title = params[:lesson][:title].present? ? params[:lesson][:title] : "Aula sem título"
+    title = params[:lesson][:title]
     content = params[:lesson][:content]
 
-    if course_id.present? && section_id.present? && title.present? then
+    if course_id.present? && section_id.present? then
+
       lesson = Lesson.new(
         section_id: section_id, 
         title: title, 
@@ -160,10 +161,6 @@ class CoursesController < ApplicationController
         else
           format.html { redirect_to course_path(course_id), notice: "Erro ao criar Sessão!" }
         end
-      end
-    else
-      respond_to do |format|
-        format.html { redirect_to course_path(course_id), notice: "Título não pode ficar em Branco!" }
       end
     end
   end
@@ -274,6 +271,25 @@ class CoursesController < ApplicationController
       respond_to do |format|
         format.html { redirect_to course_path(course_id), notice: "Aluno removido com sucesso!" }
       end
+    end
+  end
+
+  def add_image_all_videos_course
+    course_id = params[:course_id]
+    sections = Section.where(course_id: course_id)
+
+    sections.each do |section|
+      lessons = Lesson.where(section_id: section.id)
+
+      lessons.each do |lesson|
+        if params[:image_all_videos].present? then
+          lesson.update(thumbnail: params[:image_all_videos])
+        end
+      end
+    end
+
+    respond_to do |format|
+      format.html { redirect_to course_path(course_id), notice: "Imagem adicionada com sucesso!" }
     end
   end
 

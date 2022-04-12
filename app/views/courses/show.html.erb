@@ -27,7 +27,7 @@
     <label for=""><b>Descrição</b></label>
     <textarea class="form-control" readonly rows="6"><%= @course.content %></textarea>
     <br>
-    <%= render 'modal_section' %> | <%= render 'course_users' %> | <%= render 'add_user_to_course' %>
+    <%= render 'modal_section' %> | <%= render 'course_users' %> | <%= render 'add_user_to_course' %> | <%= render 'modal_update_image_all_videos' %>
 
     <br>
     <br>
@@ -36,13 +36,13 @@
 
     <div class="accordion" id="accordionSections">
       <% @course.sections.order(position: :asc).each_with_index do |section, index| %>
-        <div class="accordion-item sortable">
+        <div class="accordion-item" aria-expanded="true">
           <h2 class="accordion-header" id="section<%= section.name %>">
             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne<%= index %>" aria-expanded="true" aria-controls="collapseOne">
               Sessão <%= index + 1%>: <span class="course_section_name"><%= section.name %></span>
             </button>
           </h2>
-          <div id="collapseOne<%= index %>" class="accordion-collapse collapse" aria-labelledby="section<%= section.name %>" data-bs-parent="#accordionSections">
+          <div id="collapseOne<%= index %>" class="accordion-collapse collapse show" aria-labelledby="section<%= section.name %>" data-bs-parent="#accordionSections">
             <div class="accordion-body">
               <br>
               <h5>Video Aulas (<%= section.lessons.count %>)</h5>

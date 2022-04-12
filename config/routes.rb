@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   delete 'delete_video/:course_id/:lesson_id' => "courses#delete_video_section", as: :delete_video_section
   resources :lessons
 
+  post 'add_image_all_videos_course/:course_id' => 'courses#add_image_all_videos_course', as: :add_image_all_videos_course
   get 'move_video_to_up/:course_id/:lesson_id' => 'courses#move_to_up_video', as: :move_video_to_up
   get 'move_video_to_bottom/:course_id/:lesson_id' => 'courses#move_to_bottom_video', as: :move_video_to_bottom
   

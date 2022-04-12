@@ -1,0 +1,40 @@
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#updateImageAllVideos">
+  Definir Thumbnail Padrão
+</button>
+
+<div class="modal fade" id="updateImageAllVideos" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Definir Thumbnail Padrão</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= form_tag add_image_all_videos_course_path(@course.id), local: true, remote: true do %>
+          <div class="row">
+            <div class="col-md-12">
+              <label>Imagem de Capa</label>
+              <%= file_field_tag :image_all_videos, class: "form-control", direct_upload: true %>
+            </div>
+
+            <div class="col-md-12">
+            <br>
+              <div class="alert alert-warning" role="alert">
+                Ao fazer este Upload, a imagem será aplicada de Thumbnail para todos os Vídeos subsequentes deste Curso!
+              </div>
+            </div>
+          </div>
+          <div class="text-center">
+            <br>
+            <%= button_tag type: "submit", id: "submit-uploader", class: "btn btn-primary btn-md", data: { disable_with: "Fazendo Upload..." } do %>
+              Atualizar Thumbnails
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
