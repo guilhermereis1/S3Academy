@@ -44,6 +44,9 @@ Rails.application.routes.draw do
   delete 'destroy_section_in_course/:course_id/:section_id' => "courses#destroy_section", as: :destroy_section_in_course
   post 'update_section_in_course/:course_id/:section_id' => "courses#update_section", as: :update_section_in_course
 
+  get 'comments/:lesson_id' => 'comments#index', as: :comments
+  post 'comment/:lesson_id' => 'comments#create', as: :create_comment
+
   resources :sections
   resources :courses
   devise_for :users
