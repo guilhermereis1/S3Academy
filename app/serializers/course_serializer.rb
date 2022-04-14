@@ -9,14 +9,22 @@ class CourseSerializer < ActiveModel::Serializer
   end
 
   def first_lesson
-    object.sections.first.lessons.first
+    object.sections.first.lessons.first if object.sections.count > 0
   end
 
   def first_lesson_video
-    object.sections.first.lessons.first.video.attached? ? "#{ENV['HOST_URL']}#{rails_blob_path(object.sections.first.lessons.first.video, only_path: true)}" : nil
+    if object.sections.count > 0
+      if object.sections.first.lessons.count > 0
+        object.sections.first.lessons.first.video.attached? ? "#{ENV['HOST_URL']}#{rails_blob_path(object.sections.first.lessons.first.video, only_path: true)}" : nil
+      end
+    end
   end
 
   def first_lesson_thumbnail
-    object.sections.first.lessons.first.thumbnail.attached? ? "#{ENV['HOST_URL']}#{rails_blob_path(object.sections.first.lessons.first.thumbnail, only_path: true)}" : nil
+    if object.sections.count > 0
+      if object.sections.first.lessons.count > 0
+        object.sections.first.lessons.first.thumbnail.attached? ? "#{ENV['HOST_URL']}#{rails_blob_path(object.sections.first.lessons.first.thumbnail, only_path: true)}" : nil
+      end
+    end
   end
 end
