@@ -1,9 +1,10 @@
 class DashboardStudent::CourseController < ApplicationController
-  before_action :authenticate_student!
-  layout 'student'
-
+  before_action :authorize_request
+  
   def index
     @course = Course.find(params[:course_id])
+
+    render json: @course
   end
 
   def new_comment

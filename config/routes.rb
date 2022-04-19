@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  post :refresh_token, controller:"application"
+  post '/auth/login', to: 'authentication#login'
+  
   resources :sliders
   delete 'remove_student_from_course/:course_id/:student_id' => 'courses#remove_student_from_course', as: :remove_student_from_course
   post 'add_student_to_course/:course_id' => 'courses#add_student_to_course', as: :add_student_to_course
@@ -22,12 +25,13 @@ Rails.application.routes.draw do
     get 'delete_comment/:course_id/:student_id/:comment_id' => "course#delete_comment", as: :delete_comment
     get 'notifications/index'
     get 'course/:course_id' => "course#index", as: :course
-    get 'home/index'
+    get 'students_courses/:student_id' => 'home#index'
   end
   devise_for :students
   delete 'delete_video/:course_id/:lesson_id' => "courses#delete_video_section", as: :delete_video_section
   resources :lessons
 
+  post 'add_image_all_videos_course/:course_id' => 'courses#add_image_all_videos_course', as: :add_image_all_videos_course
   get 'move_video_to_up/:course_id/:lesson_id' => 'courses#move_to_up_video', as: :move_video_to_up
   get 'move_video_to_bottom/:course_id/:lesson_id' => 'courses#move_to_bottom_video', as: :move_video_to_bottom
   
@@ -39,6 +43,9 @@ Rails.application.routes.draw do
   post 'create_section_in_course/:course_id' => "courses#create_section", as: :create_section_in_course
   delete 'destroy_section_in_course/:course_id/:section_id' => "courses#destroy_section", as: :destroy_section_in_course
   post 'update_section_in_course/:course_id/:section_id' => "courses#update_section", as: :update_section_in_course
+
+  get 'comments/:lesson_id' => 'comments#index', as: :comments
+  post 'comment/:lesson_id' => 'comments#create', as: :create_comment
 
   resources :sections
   resources :courses

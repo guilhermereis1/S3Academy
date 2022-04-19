@@ -1,6 +1,5 @@
 class DashboardStudent::NotificationsController < ApplicationController
-  before_action :authenticate_student!
-  layout 'student'
+  before_action :authorize_request
   
   def index
     @notifications = Notification.all.order(created_at: :desc)

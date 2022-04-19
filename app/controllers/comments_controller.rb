@@ -1,9 +1,11 @@
 class CommentsController < ApplicationController
+  before_action :authorize_request
   before_action :set_comment, only: %i[ show edit update destroy ]
 
   # GET /comments or /comments.json
   def index
-    @comments = Comment.all
+    @comments = Comment.where(lesson_id: params[:lesson_id])
+    render json: @comments, each_serializer: CommentsLessonSerializer
   end
 
   # GET /comments/1 or /comments/1.json
@@ -21,16 +23,16 @@ class CommentsController < ApplicationController
 
   # POST /comments or /comments.json
   def create
-    @comment = Comment.new(comment_params)
+    comment = Comment.new(
+      student_id: comment_params[:student_id],
+      content: comment_params[:content],
+      lesson_id: params[:lesson_id],
+    )
 
-    respond_to do |format|
-      if @comment.save
-        format.html { redirect_to @comment, notice: "Comment was successfully created." }
-        format.json { render :show, status: :created, location: @comment }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
-      end
+    if comment.save
+      render json: comment, status: :created
+    else
+      render json: comment.errors, status: :unprocessable_entity
     end
   end
 
@@ -64,6 +66,6 @@ class CommentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def comment_params
-      params.require(:comment).permit(:student_id, :lesson_id, :content, :status)
+      params.require(:comment).permit(:student_id, :content, :status)
     end
 end

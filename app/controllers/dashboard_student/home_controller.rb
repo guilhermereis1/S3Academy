@@ -1,8 +1,8 @@
 class DashboardStudent::HomeController < ApplicationController
-  before_action :authenticate_student!
-  layout 'student'
+  before_action :authorize_request
 
   def index
-    @courses = Subscription.where(student_id: current_student.id)
+    @subscriptions = Subscription.where(student_id: params[:student_id])
+    render json: @subscriptions, adapter: :json, each_serializer: SubscriptionSerializer
   end
 end
