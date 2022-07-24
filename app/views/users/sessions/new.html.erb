@@ -1,5 +1,7 @@
 <div class="login_user">
-  <h2>Login Usuários</h2>
+  <div class="text-center"><%= image_tag('logo_3.png', width: '150px') %></div>
+  <br>
+  <h2>Login Administradores</h2>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="field">
@@ -12,17 +14,8 @@
       <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
     </div>
 
-    <%# if devise_mapping.rememberable? %>
-      <div class="field">
-        <%#= f.check_box :remember_me %>
-        <%#= f.label :remember_me %>
-      </div>
-    <%# end %>
-
     <div class="button_login">
       <%= f.submit "Entrar", class: "btn btn-primary" %>
     </div>
   <% end %>
-
-  <%= render "users/shared/links" %>
 </div>

@@ -5,7 +5,10 @@ default: &default
 
 development:
   <<: *default
-  database: s3_courses_learning_development
+  database: zeus_app
+  username: postgres
+  password: password
+  host: db
 
 test:
   <<: *default

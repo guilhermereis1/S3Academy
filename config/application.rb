@@ -10,7 +10,7 @@ if ['development', 'test'].include? ENV['RAILS_ENV']
   Dotenv::Railtie.load
 end
 
-module S3Academy
+module Zeus
   class Application < Rails::Application
     config.load_defaults 6.1
     config.i18n.default_locale = :"pt-BR"
