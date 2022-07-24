@@ -11,9 +11,11 @@
 <br>
 <div class="row">
   <div class="col-md-6">
+    <label for="">ID:</label>
     <input type="text" value="<%= @student.id %>" class="form-control" disabled>
   </div>
   <div class="col-md-6">
+    <label for="">Matricula:</label>
     <input type="text" value="<%= @student.registration %>" class="form-control" disabled>
   </div>
 </div>
@@ -22,14 +24,17 @@
 
 <div class="row">
   <div class="col-md-6">
+    <label for="">Email</label>
     <input type="text" value="<%= @student.email %>" class="form-control" disabled>
   </div>
   <div class="col-md-6">
+    <label for="">Status do Usuário</label>
     <input type="text" value="<%= @student.status == "active" ? "Ativo" : "Inativo" %>" class="form-control" disabled>
   </div>
 
   <div class="col-md-12">
     <br>
+    <label for="">Criado em:</label>
     <input type="text" value="<%= @student.created_at.to_s(:date_time_env_specific) %>" class="form-control" disabled>
   </div>
 </div>

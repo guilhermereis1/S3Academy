@@ -1,12 +1,12 @@
-<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalResourcesLesson">
+<button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalResourcesLesson<%= lesson.id %>">
  <i class="bi bi-folder2-open"></i> Recursos (<%= lesson.lesson_resources.count %>)
 </button>
 
-<div class="modal fade" id="modalResourcesLesson" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalResourcesLesson<%= lesson.id %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-xl">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Recurso da Aula <i class="bi bi-folder2-open"></i></h5>
+        <h5 class="modal-title" id="exampleModalLabel">Recurso(s) da Aula: <b><%= lesson.title %></b> <i class="bi bi-folder2-open"></i></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">

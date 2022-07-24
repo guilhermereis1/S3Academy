@@ -1,6 +1,16 @@
 Rails.application.routes.draw do
   post :refresh_token, controller:"application"
   post '/auth/login', to: 'authentication#login'
+
+  namespace :api do
+    namespace :v1 do
+      resources :courses, only: [:index, :show] do
+      end
+
+      resources :notifications, only: [:index, :show] do
+      end
+    end
+  end
   
   resources :sliders
   delete 'remove_student_from_course/:course_id/:student_id' => 'courses#remove_student_from_course', as: :remove_student_from_course
@@ -26,8 +36,9 @@ Rails.application.routes.draw do
     get 'notifications/index'
     get 'course/:course_id' => "course#index", as: :course
     get 'students_courses/:student_id' => 'home#index'
+    post '/subscribe_course' => 'course#subscribe_course', as: :subscribe_course
+    get '/student_subscription_courses/:student_id' => 'course#student_subscription_courses', as: :user_subscription_courses
   end
-  devise_for :students
   delete 'delete_video/:course_id/:lesson_id' => "courses#delete_video_section", as: :delete_video_section
   resources :lessons
 
@@ -53,5 +64,5 @@ Rails.application.routes.draw do
 
   get "/admin" => "dashboard_user/home#index"
   get "home/:course_id" => "home#show", as: :show_course
-  root to: 'home#index'
+  root to: 'dashboard_user/home#index'
 end

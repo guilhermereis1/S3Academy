@@ -7,6 +7,30 @@ class DashboardStudent::CourseController < ApplicationController
     render json: @course
   end
 
+  def student_subscription_courses
+    @student = Student.find(params[:student_id])
+    @subscriptions = Subscription.where(student_id: @student.id)
+
+    render json: { subscriptions: @subscriptions }, status: :ok
+  end
+    
+
+  def subscribe_course
+    @course = Course.find(params[:course_id])
+    @student = Student.find(params[:student_id])
+
+    subscription = Subscription.new(
+      student_id: @student.id,
+      course_id: @course.id
+    )
+
+    if subscription.save
+      render json: { subscription: subscription }, status: :created
+    else
+      render json: { errors: subscription.errors }, status: :unprocessable_entity
+    end
+  end
+
   def new_comment
     course_id = params[:course_id]
     lesson_id = params[:lesson_id]
