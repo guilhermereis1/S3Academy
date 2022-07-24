@@ -1,6 +1,6 @@
 FROM ruby:3.0.0
 
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client yarn
+RUN apt-get update -qq && apt-get install -y nodejs postgresql-client && apt-get install yarn
 
 WORKDIR /app
 
